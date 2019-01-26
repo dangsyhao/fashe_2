@@ -300,7 +300,6 @@ class fashe_product_shortcode_class
         }
     }
 
-
     /**
      * Set ids query args.
      *
@@ -715,21 +714,14 @@ class fashe_product_shortcode_class
             do_action("woocommerce_shortcode_{$this->type}_loop_no_results", $this->attributes);
         }
 
-
         if(is_page('shop') || is_shop() || is_archive()){
-
             do_action('fashe_woocommerce_orderby');
-            
-            echo "<div class='row'>".$results."</div>";
-
+                echo "<div class='row'>".$results."</div>";
             do_action( 'fashe_woocommerce_pagination' );
             
         }else{
-
             echo $results;
-
         }
-
         //reset
         wp_reset_postdata();
         wc_reset_loop();
@@ -754,10 +746,10 @@ class fashe_product_shortcode_class
         return $args;
     }
 
-    public function fashe_pagination()
-    {
-        $products = $this->get_query_results();
-        return $products;
-    }
+    // public function fashe_pagination()
+    // {
+    //     $products = $this->get_query_results();
+    //     return $products;
+    // }
 
 }
