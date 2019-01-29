@@ -22,6 +22,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 	<?php
 
-        do_action( 'fashe_categories_template_home',$category);
+        wc_get_template( 'template-parts/blocs/sub-category.php',array('category'=>$category));
 
 	?>

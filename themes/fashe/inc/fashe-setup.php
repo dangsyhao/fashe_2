@@ -128,4 +128,5 @@ function fashe_scripts() {
     wp_enqueue_script( 'fashe-js-main', get_theme_file_uri( '/assets/js/main.min.js' ), array(), null, true );
 
 }
+
 //add_action( 'wp_enqueue_scripts', 'fashe_scripts' );

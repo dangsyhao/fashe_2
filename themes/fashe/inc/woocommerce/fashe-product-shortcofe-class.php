@@ -746,10 +746,4 @@ class fashe_product_shortcode_class
         return $args;
     }
 
-    // public function fashe_pagination()
-    // {
-    //     $products = $this->get_query_results();
-    //     return $products;
-    // }
-
 }

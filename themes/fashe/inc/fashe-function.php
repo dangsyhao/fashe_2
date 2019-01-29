@@ -95,3 +95,12 @@ function fashe_sanitize_checkbox( $checked ) {
     return ( ( isset( $checked ) && true === $checked ) ? true : false );
 }
 
+/*
+ *
+ */
+
+function fashe_get_template_part($path=''){
+
+    include(locate_template('template-parts/'.$path.'.php',false,false));
+
+}
