@@ -104,3 +104,26 @@ function fashe_featured_right_bar()
 }
 
 add_action('fashe_single_product_right_section','fashe_single_product_right_section');
+
+
+/*
+ * Set Html tags Close </> in Function
+ */
+
+function fashe_get_tag_close($tag_open){
+
+
+    if(preg_match('/span/',$tag_open,$matches)){
+        return '</'.$matches[0].'>';
+    }
+
+    if(preg_match('/div/',$tag_open,$matches)){
+        return '</'.$matches[0].'>';
+    }
+
+    if(preg_match('/del/',$tag_open,$matches)){
+
+        return '</'.$matches[0].'>';
+    }
+
+}

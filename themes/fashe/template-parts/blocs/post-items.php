@@ -24,5 +24,6 @@
             <?php _e('Continue Reading','fashe'); ?>
             <i class="fa fa-long-arrow-right m-l-8" aria-hidden="true"></i>
         </a>
+
     </div>
 </div>

@@ -129,6 +129,7 @@ function fashe_woocommerce_short_code_shop($atts) {
         'per_page'     => 6,
         'cat_operator' => 'AND',
         'paginate'      =>true,
+        'html'        =>'<div class="row">'
     ), $atts);
 
     $shortcode = new fashe_product_shortcode_class( $atts);

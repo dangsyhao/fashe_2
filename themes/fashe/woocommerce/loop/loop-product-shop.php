@@ -20,7 +20,12 @@
                 <?= get_the_title();?>
             </a>
 
-            <?= fashe_get_price_html(); ?>
+            <?= fashe_get_price_html('',array(
+                    'price_tag'=>'<span class="block2-price m-text6 p-r-5">',
+                    'sale_price_tag_regular' => '<span class= "block2-oldprice m-text7 p-r-5" >',
+                    'sale_price_tag_sale' => '<span class= "block2-newprice m-text8 p-r-5" >',
+
+            )); ?>
 
         </div>
     </div>

@@ -17,7 +17,11 @@
                             <?php wc_get_template_part('single-product/blocs/title_single')?>
 
                             <!-- Get Price -->
-                            <?= fashe_get_price_html()?>
+                            <?=fashe_get_price_html('',array(
+                                                                'price_tag'                 =>'<span class="m-text17">',
+                                                                'sale_price_tag_regular'    => '<span class= "block2-oldprice m-text17" >',
+                                                                'sale_price_tag_sale'       => '<span class= "m-text17" >',
+                                                                )); ?>
 
                             <!-- Short-Desc -->
                             <?php wc_get_template_part('single-product/blocs/short_desc_single')?>

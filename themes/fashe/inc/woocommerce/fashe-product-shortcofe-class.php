@@ -149,6 +149,7 @@ class fashe_product_shortcode_class
                 'page' => 1,         // Page for pagination.
                 'paginate' => false,     // Should results be paginated.
                 'cache' => true,      // Should shortcode output be cached.
+                'html'  =>''
             ), $attributes, $this->type
         );
 
@@ -656,6 +657,7 @@ class fashe_product_shortcode_class
         $columns = absint($this->attributes['columns']);
         $classes = $this->get_wrapper_classes($columns);
         $products = $this->get_query_results();
+
         ob_start();
 
         if ($products && $products->ids) {
@@ -714,13 +716,27 @@ class fashe_product_shortcode_class
             do_action("woocommerce_shortcode_{$this->type}_loop_no_results", $this->attributes);
         }
 
+
         if(is_page('shop') || is_shop() || is_archive()){
+
+            $html= $this->get_attributes();
+            $html_open=$html['html'];
+            $html_close=fashe_get_tag_close($html_open);
+
+            ob_start();
+
             do_action('fashe_woocommerce_orderby');
-                echo "<div class='row'>".$results."</div>";
+
+            echo $html_open.$results.$html_close;
+
             do_action( 'fashe_woocommerce_pagination' );
+
+            return ob_get_clean();
             
         }else{
-            echo $results;
+
+            return $results;
+
         }
         //reset
         wp_reset_postdata();

@@ -33,7 +33,10 @@
                         <a href="<?= get_permalink();?>" class="s-text20">
                             <?php the_title()?>
                         </a>
-                        <span class="dis-block s-text17 p-t-6"><?= '$'.$product->price;?></span>
+                        <?=fashe_get_price_html('',array(
+                            'price_tag'=>'<span class="dis-block s-text17 p-t-6">',
+                            'get_price_sale'=>false
+                        )); ?>
                     </div>
                 </li>
 

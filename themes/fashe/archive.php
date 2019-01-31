@@ -3,8 +3,8 @@
 
     <!--Load Title -Banner-->
     <?php if (!is_front_page() || !is_home()){
-        get_template_part('template-parts/page/page/title-banner');
-    }
+                get_template_part('template-parts/page/page/title-banner');
+           }
     ?>
 
     <section class="bgwhite p-t-55 p-b-65">

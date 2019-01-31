@@ -20,7 +20,7 @@
                 </div>
 
                 <!-- Load right-bar-->
-                <?php get_template_part('template-parts/blocs/right-bar')?>
+                <?php get_template_part('template-parts/blocs/right-bar/right-bar')?>
 
             </div>
         </div>

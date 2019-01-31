@@ -16,6 +16,5 @@
         <!--        Tags-->
         <?php fashe_get_template_part('blocs/right-bar/tags');?>
 
-
     </div>
 </div>
