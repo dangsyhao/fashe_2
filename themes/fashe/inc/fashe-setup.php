@@ -130,3 +130,32 @@ function fashe_scripts() {
 }
 
 //add_action( 'wp_enqueue_scripts', 'fashe_scripts' );
+
+/** Xử lý Ajax trong WordPress */
+
+add_action( 'wp_ajax_LoadPostPagination', 'LoadPostPagination_init' );
+add_action( 'wp_ajax_nopriv_LoadPostPagination', 'LoadPostPagination_init' );
+function LoadPostPagination_init() {
+    $posts_per_page = intval($_POST['posts_per_page']);
+    $paged = intval($_POST['data_page']);
+    $post_type = sanitize_text_field($_POST['post_type']);
+    $allpost = query_ajax_pagination( $post_type, $posts_per_page , $paged );
+    echo $allpost;
+    exit;
+}
+
+/** Xử lý Ajax trong WordPress */
+
+add_action( 'wp_enqueue_scripts', 'devvn_useAjaxPagination', 1 );
+
+function devvn_useAjaxPagination() {
+    /** Thêm js vào website */
+    wp_enqueue_script( 'devvn-ajax',ASSETS_PATH. 'js/paginate.js', array( 'jquery' ), '1.0', true );
+    $php_array = array(
+        'admin_ajax' => admin_url( 'admin-ajax.php' )
+    );
+    wp_localize_script( 'devvn-ajax', 'svl_array_ajaxp', $php_array );
+
+    /*Thêm css vào website*/
+    wp_enqueue_style( 'ajaxp',ASSETS_PATH. 'css/paginate.css', false);
+}

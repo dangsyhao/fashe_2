@@ -31,4 +31,3 @@ require get_parent_theme_file_path( 'inc/woocommerce/fashe-wc-formatting-functio
 require get_parent_theme_file_path( 'inc/woocommerce/fashe-woocommerce-shortcode.php');
 //
 require get_parent_theme_file_path( 'inc/fashe-shortcode-product.php');
-
