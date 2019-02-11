@@ -19,3 +19,7 @@ add_action('fashe_woocommerce_orderby','fashe_woocommerce_orderby');
 
 //
 add_action('fashe_get_price_html','fashe_get_price_html');
+
+//
+
+add_filter('fashe_load_post_index','fashe_load_post_index');

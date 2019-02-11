@@ -4,7 +4,7 @@
 // JavaScript Document
 (function($) {
     $(document).ready(function(){
-        $( '#result_ajaxp' ).on( 'click',' ul.pagination a', function( e ) {
+        $( '#result_ajaxp' ).on( 'click','div.pagination a', function( e ) {
             /** Prevent Default Behaviour */
             e.preventDefault();
             /** Get data-page */
@@ -24,7 +24,7 @@
                     post_type    :  post_type
                 }),
                 beforeSend: function() {
-                    $( '.loading_ajaxp' ).css( 'display','block' );
+                    //$( '.loading_ajaxp' ).css( 'display','block' );
                 },
                 success: function( data, textStatus, jqXHR ){
                     $( '#result_ajaxp' ).html( data );
