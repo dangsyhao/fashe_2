@@ -42,34 +42,26 @@ function fashe_woocommerce_subcategory_thumbnail( $category ) {
 
 function fashe_woocommerce_pagination(){
 
-
     $total   = isset( $total ) ? $total : wc_get_loop_prop( 'total_pages' );
-    $current = isset( $current ) ? $current : wc_get_loop_prop( 'current_page' );
-    $base    = esc_url_raw( add_query_arg( 'product-page', '%#%', false ) );
-    $format  = '?product-page=%#%';
+    //$current = isset( $current ) ? $current : wc_get_loop_prop( 'current_page' );
+
 
     if ( $total <= 1 ) {
         return;
     }
-    ?>
-    <?php
-    paginate_links( apply_filters( 'woocommerce_pagination_args', array( // WPCS: XSS ok.
-        'base'         => $base,
-        'format'       => $format,
-        'add_args'     => false,
-        'current'      => $current,
-        'total'        => $total,
-    ) ) );
+
+    ob_start();
+
     ?>
 
-    <?php ob_start();?>
     <div class="pagination flex-m flex-w p-t-26">
         <?php for($i=1;$i<=$total;$i++):?>
-            <a href="<?= '?product-page='.$i;?>" class="item-pagination flex-c-m trans-0-4 <?= ($current==$i)?'active-pagination':'';?>"><?= $i;?></a>
+            <a href="#" class="item-pagination flex-c-m trans-0-4 <?= ($current==$i)?'active-pagination':'';?>"><?= $i;?></a>
         <?php endfor;?>
     </div>
 
     <?php
+
     $result=ob_get_contents();
     ob_end_clean();
 

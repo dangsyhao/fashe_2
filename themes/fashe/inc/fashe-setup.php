@@ -135,20 +135,48 @@ function fashe_scripts() {
 
 add_action( 'wp_ajax_LoadPostPagination', 'LoadPostPagination_init' );
 add_action( 'wp_ajax_nopriv_LoadPostPagination', 'LoadPostPagination_init' );
+
 function LoadPostPagination_init() {
     $posts_per_page = intval($_POST['posts_per_page']);
     $paged = intval($_POST['data_page']);
     $post_type = sanitize_text_field($_POST['post_type']);
-    $allpost = query_ajax_pagination( $post_type, $posts_per_page , $paged );
+    $allpost = query_ajax_pagination( array('posts_per_page'=>$posts_per_page ,'paged'=>$paged ,'post_type'=>$post_type));
     echo $allpost;
     exit;
 }
+
+
+/** Xử lý Ajax trong WordPress */
+
+add_action( 'wp_ajax_LoadProductPagination', 'LoadProductPagination_init' );
+add_action( 'wp_ajax_nopriv_LoadProductPagination', 'LoadProductPagination_init' );
+
+function LoadProductPagination_init() {
+
+    $posts_per_page = _sanitize_text_fields($_POST['posts_per_page']);
+    $paged = intval($_POST['data_page']);
+
+    $atts =  array(
+        'limit'     => $posts_per_page,
+        'cat_operator' => 'AND',
+        'paginate'      =>true,
+        'page'          =>$paged
+    );
+
+    $all_product = fashe_woocommerce_short_code_shop($atts);
+    echo $all_product;
+    echo "trang so :".$paged;
+    exit;
+
+}
+
 
 /** Xử lý Ajax trong WordPress */
 
 add_action( 'wp_enqueue_scripts', 'devvn_useAjaxPagination', 1 );
 
 function devvn_useAjaxPagination() {
+
     /** Thêm js vào website */
     wp_enqueue_script( 'devvn-ajax',ASSETS_PATH. 'js/paginate.js', array( 'jquery' ), '1.0', true );
     $php_array = array(
@@ -156,6 +184,4 @@ function devvn_useAjaxPagination() {
     );
     wp_localize_script( 'devvn-ajax', 'svl_array_ajaxp', $php_array );
 
-    /*Thêm css vào website*/
-    wp_enqueue_style( 'ajaxp',ASSETS_PATH. 'css/paginate.css', false);
 }

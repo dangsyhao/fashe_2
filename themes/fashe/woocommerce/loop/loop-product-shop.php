@@ -1,7 +1,7 @@
 
 <?php global $product;?>
 
-<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+<div class="col-sm-12 col-md-6 col-lg-4 p-b-50 ">
     <div class="block2">
         <div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
             <?= woocommerce_get_product_thumbnail();?>

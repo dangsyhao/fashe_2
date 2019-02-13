@@ -10,8 +10,10 @@ add_filter('fashe_recent_product_loop_home','fashe_recent_product_loop_home');
 
 //
 add_shortcode('fashe_woocommerce_short_code_shop','fashe_woocommerce_short_code_shop');
-//
-add_action('fashe_woocommerce_pagination_shop','fashe_woocommerce_pagination_shop');
+
+//Paginate in Shop or Blog
+
+add_action('fashe_paginate_ajax','fashe_paginate_ajax');
 //
 add_action('fashe_woocommerce_pagination','fashe_woocommerce_pagination');
 //

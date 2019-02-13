@@ -658,6 +658,9 @@ class fashe_product_shortcode_class
         $classes = $this->get_wrapper_classes($columns);
         $products = $this->get_query_results();
 
+        echo $this->attributes['page'];
+
+
         ob_start();
 
         if ($products && $products->ids) {
@@ -710,6 +713,10 @@ class fashe_product_shortcode_class
 
             ob_end_clean();
 
+            //reset post-data
+            wp_reset_postdata();
+            wc_reset_loop();
+
             do_action("woocommerce_shortcode_after_{$this->type}_loop", $this->attributes);
 
         } else {
@@ -717,30 +724,34 @@ class fashe_product_shortcode_class
         }
 
 
-        if(is_page('shop') || is_shop() || is_archive()){
+        if(!is_home() && !is_front_page()){
 
-            $html= $this->get_attributes();
-            $html_open=$html['html'];
-            $html_close=fashe_get_tag_close($html_open);
+//            $html= $this->get_attributes();
+//            $html_open=$html['html'];
+//            $html_close=fashe_get_tag_close($html_open);
+
+            $total_pages   = isset( $products->total_pages ) ? $products->total_pages : wc_get_loop_prop( 'total_pages' );
 
             ob_start();
 
-            do_action('fashe_woocommerce_orderby');
+            //do_action('fashe_woocommerce_orderby');
+            echo '<div class="get_data_product" data-posts-per-page='.$this->attributes['limit'].'></div>';
 
-            echo $html_open.$results.$html_close;
+            echo '<div class="row">'.$results.'</div>';
 
-            do_action( 'fashe_woocommerce_pagination' );
+            $paginate= fashe_paginate_ajax(array('total_pages'=>$total_pages));
+            echo $paginate;
+            $all_product= ob_get_contents();
+            ob_end_clean();
 
-            return ob_get_clean();
-            
+            return $all_product;
+
         }else{
 
             return $results;
 
         }
-        //reset
-        wp_reset_postdata();
-        wc_reset_loop();
+
     }
 
     /**

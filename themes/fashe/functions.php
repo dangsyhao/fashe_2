@@ -7,8 +7,6 @@
 
 require get_parent_theme_file_path( '/inc/define.php' );
 //
-require get_parent_theme_file_path( '/inc/fashe-setup.php' );
-//
 require get_parent_theme_file_path( '/inc/fashe-function.php' );
 //
 require get_parent_theme_file_path( '/inc/fashe-template-functions.php' );
@@ -31,3 +29,6 @@ require get_parent_theme_file_path( 'inc/woocommerce/fashe-wc-formatting-functio
 require get_parent_theme_file_path( 'inc/woocommerce/fashe-woocommerce-shortcode.php');
 //
 require get_parent_theme_file_path( 'inc/fashe-shortcode-product.php');
+
+//
+require get_parent_theme_file_path( '/inc/fashe-setup.php' );

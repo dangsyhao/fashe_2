@@ -128,52 +128,35 @@ function fashe_get_tag_close($tag_open){
 
 }
 
-/******************
- * Thêm shortcode ajax_pagination
- ********************/
-function ajax_pagination_svl( $atts ){
-    $atts = shortcode_atts(
-        array(
-            'posts_per_page' => 3,
-            'paged' => 1,
-            'post_type' => 'post'
-        ), $atts,'ajax_pagination'
-    );
-    $posts_per_page = intval($atts['posts_per_page']);
-    $paged = intval($atts['paged']);
-    $post_type = sanitize_text_field($atts['post_type']);
-    $allpost  = '<div id="result_ajaxp" class="col-md-8 col-lg-9 p-b-75">';
-    $allpost .= query_ajax_pagination( $post_type, $posts_per_page , $paged );
-    $allpost .= '</div>';
-
-    return $allpost;
-}
-add_shortcode('ajax_pagination', 'ajax_pagination_svl');
 
 /******************
 Function phân trang PHP có dạng 1,2,3 ...
  ********************/
 
-function query_ajax_pagination( $post_type = 'post', $posts_per_page = 5, $paged = 1){
+function query_ajax_pagination( $args){
 
-    $args_svl = array(
-        'post_type' => $post_type,
-        'posts_per_page' => $posts_per_page,
-        'paged' => $paged,
+    $args_merge = array_merge(
+        array(
+        'post_type' => 'post',
+        'posts_per_page' => 5,
+        'paged' => 1,
         'post_status' => 'publish'
-    );
-    $q_svl = new WP_Query( $args_svl );
+        ),(array) $args
+        );
+
+    $q_svl = new WP_Query( $args_merge );
 
     /*Tổng bài viết trong query trên*/
     $total_records = $q_svl->found_posts;
 
     /*Tổng số page*/
-    $total_pages = ceil($total_records/$posts_per_page);
+    $total_pages = ceil($total_records/$args_merge['posts_per_page']);
 
     ob_start();
+
     if($q_svl->have_posts()):
 
-        echo '<div class="ajax_pagination p-r-50 p-r-0-lg" posts_per_page="'.$posts_per_page.'" post_type="'.$post_type.'">';
+        echo '<div class="ajax_pagination p-r-50 p-r-0-lg" posts_per_page="'.$args_merge['posts_per_page'].'" post_type="'.$args_merge['post_type'].'">';
 
             while($q_svl->have_posts()):$q_svl->the_post();
                 get_template_part('template-parts/blocs/post-items');
@@ -181,7 +164,11 @@ function query_ajax_pagination( $post_type = 'post', $posts_per_page = 5, $paged
 
         echo '</div>';
 
-        $paginate = paginate_function( $posts_per_page, $paged, $total_records, $total_pages);
+        $paginate = fashe_paginate_ajax(array(
+                                            'posts_per_page'=>$args_merge['posts_per_page'],
+                                            'paged'=>$args_merge['paged'],
+                                            'total_pages'=>$total_pages
+                                        ));
         echo $paginate;
 
     endif;
@@ -194,45 +181,36 @@ function query_ajax_pagination( $post_type = 'post', $posts_per_page = 5, $paged
 Function phân trang PHP có dạng 1,2,3 ...
  ********************/
 
-function paginate_function($item_per_page, $current_page, $total_records, $total_pages)
+function fashe_paginate_ajax($args)
 {
 
-    if($total_pages <= 1){
+    $args_merge = array_merge(array(
+                                    'posts_per_page' => '5',
+                                    'paged' => '1',
+                                    'total_records' => '0',
+                                    'total_pages' => '0'
+                                    ),
+                                    (array)$args
+                            );
+
+
+    if($args['total_pages'] <= 1){
 
         return '';
     }
 
     ob_start();
 
-    echo '<div class="pagination flex-m flex-w p-r-50">';
+    ?>
 
-    for($i = ($current_page-2); $i < $current_page; $i++){ //Create left-hand side links
-        if($i > 0){
-            echo '<a class="item-pagination flex-c-m trans-0-4" href="#" data-page="'.$i.'">'.$i.'</a>';
-        }
-    }
+    <div class="pagination flex-m flex-w p-t-26">
+        <?php for($i=1;$i<=$args_merge['total_pages'];$i++):?>
+            <a  class="item-pagination flex-c-m trans-0-4 <?= ($args_merge['paged']==$i)?'active-pagination':'';?>" href="#" data-page="<?=$i?>"><?= $i;?></a>
+        <?php endfor;?>
+    </div>
 
-    if($current_page){
-        echo '<a href="#" class="item-pagination flex-c-m trans-0-4 active-pagination">'.$current_page.'</a>';
-    }
-
-    for($i = $current_page+1; $i < $current_page+3 ; $i++){ //create right-hand side links
-        if($i<=$total_pages){
-            echo '<a class="item-pagination flex-c-m trans-0-4" href="#" data-page="'.$i.'">'.$i.'</a>';
-        }
-    }
-
-    echo '</div>';
-
+    <?php
     return ob_get_clean();
 
 }
 
-/**
- * Load post items in blog page
- */
-
-function fashe_load_post_index(){
-
-    get_template_part('template-parts/blocs/post-items');
-}

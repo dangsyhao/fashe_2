@@ -30,7 +30,7 @@ if(is_front_page() || is_home()){
 
 }
 
-if(is_page('shop' ) || is_shop() || is_archive()){
+if(!is_home() && !is_front_page()){
 
     wc_get_template_part( 'loop/loop-product-shop');
 
