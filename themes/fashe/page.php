@@ -20,11 +20,12 @@ get_header(); ?>
                             <?php get_template_part('template-parts/page/page/slide-bar');?>
                         </div>
                         <!-- Product -->
+
                         <div id="load_ajax_shop_product" class="col-sm-6 col-md-8 col-lg-9 p-b-50">
-                            <?php while (have_posts()):the_post();?>
-                                <?php the_content(); ?>
-                            <?php endwhile;?>
-                           <?php //LoadProductPagination_init();?>
+
+                                <?php while (have_posts()):the_post();?>
+                                    <?php the_content();?>
+                                <?php endwhile;?>
 
                         </div>
                     </div>
@@ -34,7 +35,7 @@ get_header(); ?>
 
             <section class="cart bgwhite p-t-70 p-b-100">
                 <div class="container">
-<!--                    My Html-->
+                <!--My Html-->
                     <?php while (have_posts()):the_post();?>
                         <?php the_content(); ?>
                     <?php endwhile;?>
@@ -52,5 +53,6 @@ get_header(); ?>
         ?>
 
     <?php endif;?>
+
 
 <?php get_footer();?>

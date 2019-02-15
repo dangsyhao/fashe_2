@@ -148,7 +148,7 @@ class fashe_product_shortcode_class
                 'class' => '',        // HTML class.
                 'page' => 1,         // Page for pagination.
                 'paginate' => false,     // Should results be paginated.
-                'cache' => true,      // Should shortcode output be cached.
+                'cache' => false,      // Should shortcode output be cached.
                 'html'  =>''
             ), $attributes, $this->type
         );
@@ -209,7 +209,7 @@ class fashe_product_shortcode_class
 
         //
         if (wc_string_to_bool($this->attributes['paginate'])) {
-            $this->attributes['page'] = absint(empty($_GET['product-page']) ? 1 : $_GET['product-page']); // WPCS: input var ok, CSRF ok.
+            $this->attributes['page'] = absint(empty($_POST['data_page']) ? 1 : $_POST['data_page']); // WPCS: input var ok, CSRF ok.
         }
 
         if (!empty($this->attributes['rows'])) {
@@ -658,10 +658,6 @@ class fashe_product_shortcode_class
         $classes = $this->get_wrapper_classes($columns);
         $products = $this->get_query_results();
 
-        echo $this->attributes['page'];
-
-
-        ob_start();
 
         if ($products && $products->ids) {
             // Prime caches to reduce future queries.
@@ -686,10 +682,12 @@ class fashe_product_shortcode_class
 
             $original_post = $GLOBALS['post'];
 
+            ob_start();
+
             do_action("woocommerce_shortcode_before_{$this->type}_loop", $this->attributes);
 
-            ob_start();
             woocommerce_product_loop_start();
+
             if (wc_get_loop_prop('total')) {
                 foreach ($products->ids as $product_id) {
                     $GLOBALS['post'] = get_post($product_id); // WPCS: override ok.
@@ -701,17 +699,15 @@ class fashe_product_shortcode_class
                     // Render product template.
                     get_template_part('content', 'product');
 
+
                     // Restore product visibility.
                     remove_action('woocommerce_product_is_visible', array($this, 'set_product_as_visible'));
                 }
             }
 
             $GLOBALS['post'] = $original_post; // WPCS: override ok.
+
             woocommerce_product_loop_end();
-
-            $results=ob_get_contents();
-
-            ob_end_clean();
 
             //reset post-data
             wp_reset_postdata();
@@ -723,36 +719,32 @@ class fashe_product_shortcode_class
             do_action("woocommerce_shortcode_{$this->type}_loop_no_results", $this->attributes);
         }
 
-
-        if(!is_home() && !is_front_page()){
-
-//            $html= $this->get_attributes();
-//            $html_open=$html['html'];
-//            $html_close=fashe_get_tag_close($html_open);
-
-            $total_pages   = isset( $products->total_pages ) ? $products->total_pages : wc_get_loop_prop( 'total_pages' );
-
-            ob_start();
-
-            //do_action('fashe_woocommerce_orderby');
-            echo '<div class="get_data_product" data-posts-per-page='.$this->attributes['limit'].'></div>';
-
-            echo '<div class="row">'.$results.'</div>';
-
-            $paginate= fashe_paginate_ajax(array('total_pages'=>$total_pages));
-            echo $paginate;
-            $all_product= ob_get_contents();
-            ob_end_clean();
-
-            return $all_product;
-
-        }else{
-
-            return $results;
-
-        }
+        return ob_get_clean();
 
     }
+
+    /**
+     * Get shortcode content.
+     *
+     * @since  3.2.0
+     * @return string
+     */
+    public function fashe_get_shop_paginate()
+    {
+        if($this->attributes['paginate'] === false){
+             return false ;
+        }
+
+        $products = $this->get_query_results();
+        $total_pages= $products->total_pages;
+        $paged=$this->attributes['page'];
+
+        $paginate_template = fashe_paginate_ajax(array('total_pages'=>$total_pages,'paged'=>$paged));
+
+        return $paginate_template;
+
+    }
+
 
     /**
      * Order by rating.

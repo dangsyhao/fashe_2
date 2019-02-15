@@ -187,12 +187,8 @@ function fashe_paginate_ajax($args)
     $args_merge = array_merge(array(
                                     'posts_per_page' => '5',
                                     'paged' => '1',
-                                    'total_records' => '0',
                                     'total_pages' => '0'
-                                    ),
-                                    (array)$args
-                            );
-
+                                    ), (array)$args );
 
     if($args['total_pages'] <= 1){
 
@@ -208,9 +204,8 @@ function fashe_paginate_ajax($args)
             <a  class="item-pagination flex-c-m trans-0-4 <?= ($args_merge['paged']==$i)?'active-pagination':'';?>" href="#" data-page="<?=$i?>"><?= $i;?></a>
         <?php endfor;?>
     </div>
-
     <?php
-    return ob_get_clean();
 
+    return ob_get_clean();
 }
 

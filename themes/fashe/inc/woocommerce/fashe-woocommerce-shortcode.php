@@ -125,12 +125,69 @@ function fashe_woocommerce_product_category( $atts ) {
 function fashe_woocommerce_short_code_shop($atts) {
 
     $atts = shortcode_atts( array(
-        'per_page'     => '2',
+        'per_page'     => '4',
         'page'  => 1,
         'paginate'      =>true
     ), $atts);
 
-    $shortcode = new fashe_product_shortcode_class( $atts);
+    ?>
+    <script type="text/javascript">
 
-    return $shortcode->fashe_get_content();
+        jQuery(document).ready(function($) {
+
+            var page_default ="<?php echo $atts['page']?>";
+
+            // Load Products Function .
+            function load_products_ajax(data_page) {
+                var posts_per_page = "<?php echo $atts['per_page'];?>";
+
+                /** Ajax Call */
+                $.ajax({
+                    cache: false,
+                    url: svl_array_ajaxp.admin_ajax,
+                    type: "POST",
+                    dataType: "html",
+                    data: ({
+                        action: 'LoadProductPagination',
+                        data_page: data_page,
+                        posts_per_page: posts_per_page,
+                    }),
+                    beforeSend: function () {
+
+                },
+                    success: function (data, textStatus, jqXHR) {
+                        $('#load_ajax_shop_product').html(data);
+                },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                    console.log('The following error occured: ' + textStatus, errorThrown);
+                },
+                    complete: function (jqXHR, textStatus) {
+
+                }
+
+                });
+
+            }//End fucntion
+
+
+            //Load Page Default .
+            load_products_ajax(page_default);
+
+            //Load page with Pagination
+            $('#load_ajax_shop_product').on('click', 'div.pagination a', function (e) {
+
+                e.preventDefault();
+
+                var data_page = $(this).attr('data-page');
+
+                load_products_ajax(data_page);
+
+            });
+
+
+        })//End javascript
+
+    </script>
+
+<?php
 }

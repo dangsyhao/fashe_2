@@ -44,7 +44,8 @@
 <script type="text/javascript" src="<?= ASSETS_PATH;?>vendor/bootstrap/js/popper.js"></script>
 <script type="text/javascript" src="<?= ASSETS_PATH;?>vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-<script type="text/javascript" src="<?= ASSETS_PATH;?>vendor/select2/select2.min.js"></script>
+<script class="select-2" type="text/javascript" src="<?= ASSETS_PATH;?>vendor/select2/select2.min.js"></script>
+
 <script type="text/javascript">
 		$(".selection-1").select2({
 			minimumResultsForSearch: 20,
@@ -56,7 +57,6 @@
 			dropdownParent: $('#dropDownSelect2')
 		});
 </script>
-
 
 <!--===============================================================================================-->
 <script type="text/javascript" src="<?= ASSETS_PATH;?>vendor/slick/slick.min.js"></script>
@@ -127,35 +127,6 @@
 <!--===============================================================================================-->
 <script src="<?= ASSETS_PATH;?>js/main.js"></script>
 <!--===============================================================================================-->
-<script>
-
-    $(document).ready(function(){
-
-        $('.call-ajax').click(function(){ // Khi click vào button thì sẽ gọi hàm ajax
-
-    $.ajax({ // Hàm ajax
-        type : "post", //Phương thức truyền post hoặc get
-        dataType : "html", //Dạng dữ liệu trả về xml, json, script, or html
-        url : '<?php echo admin_url('admin-ajax.php');?>', // Nơi xử lý dữ liệu
-        data : {
-        action: "random", //Tên action, dữ liệu gởi lên cho server
-    },
-    beforeSend: function(){
-    // Có thể thực hiện công việc load hình ảnh quay quay trước khi đổ dữ liệu ra
-    },
-    success: function(response) {
-        //Làm gì đó khi dữ liệu đã được xử lý
-        $('.display-post').html(response); // Đổ dữ liệu trả về vào thẻ &lt;div class="display-post"&gt;&lt;/div&gt;
-    },
-    error: function( jqXHR, textStatus, errorThrown ){
-        //Làm gì đó khi có lỗi xảy ra
-        console.log( 'The following error occured: ' + textStatus, errorThrown );
-    }
-    });
-    });
-    });
-
-</script>
 
 <?php get_footer( 'shop' );?>
 

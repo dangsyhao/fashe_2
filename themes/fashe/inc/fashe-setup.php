@@ -163,11 +163,19 @@ function LoadProductPagination_init() {
         'page'          =>$paged
     );
 
-    $all_product = fashe_woocommerce_short_code_shop($atts);
-    echo $all_product;
-    echo "trang so :".$paged;
-    exit;
+    do_action('fashe_woocommerce_orderby');
 
+    echo '<div class="row">';
+
+    $shortcode = new fashe_product_shortcode_class( $atts);
+
+    echo $shortcode->fashe_get_content();
+
+    echo '</div>';
+
+    echo $shortcode ->fashe_get_shop_paginate();
+
+    exit();
 }
 
 

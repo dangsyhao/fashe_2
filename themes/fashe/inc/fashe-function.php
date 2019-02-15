@@ -104,3 +104,4 @@ function fashe_get_template_part($path=''){
     include(locate_template('template-parts/'.$path.'.php',false,false));
 
 }
+
