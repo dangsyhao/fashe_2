@@ -154,20 +154,18 @@ add_action( 'wp_ajax_nopriv_LoadProductPagination', 'LoadProductPagination_init'
 function LoadProductPagination_init() {
 
     $posts_per_page = _sanitize_text_fields($_POST['posts_per_page']);
-    $paged = intval($_POST['data_page']);
 
     $atts =  array(
         'limit'     => $posts_per_page,
         'cat_operator' => 'AND',
         'paginate'      =>true,
-        'page'          =>$paged
     );
 
-    do_action('fashe_woocommerce_orderby');
-
-    echo '<div class="row">';
-
     $shortcode = new fashe_product_shortcode_class( $atts);
+    $get_attrs = $shortcode->fashe_get_query_results();
+    $total_product = $get_attrs->total;
+
+    echo '<div class="row product_results" data-total-results="'.$total_product.'">';
 
     echo $shortcode->fashe_get_content();
 

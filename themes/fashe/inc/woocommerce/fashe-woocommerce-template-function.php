@@ -36,37 +36,6 @@ function fashe_woocommerce_subcategory_thumbnail( $category ) {
 
 }
 
-/*
- *
- */
-
-function fashe_woocommerce_pagination(){
-
-    $total   = isset( $total ) ? $total : wc_get_loop_prop( 'total_pages' );
-    //$current = isset( $current ) ? $current : wc_get_loop_prop( 'current_page' );
-
-
-    if ( $total <= 1 ) {
-        return;
-    }
-
-    ob_start();
-
-    ?>
-
-    <div class="pagination flex-m flex-w p-t-26">
-        <?php for($i=1;$i<=$total;$i++):?>
-            <a href="#" class="item-pagination flex-c-m trans-0-4 <?= ($current==$i)?'active-pagination':'';?>"><?= $i;?></a>
-        <?php endfor;?>
-    </div>
-
-    <?php
-
-    $result=ob_get_contents();
-    ob_end_clean();
-
-    echo $result;
-}
 
 /*
  * Fashe Sort Product

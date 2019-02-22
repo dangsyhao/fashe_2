@@ -47,15 +47,17 @@
 <script class="select-2" type="text/javascript" src="<?= ASSETS_PATH;?>vendor/select2/select2.min.js"></script>
 
 <script type="text/javascript">
-		$(".selection-1").select2({
-			minimumResultsForSearch: 20,
-			dropdownParent: $('#dropDownSelect1')
-		});
 
-		$(".selection-2").select2({
-			minimumResultsForSearch: 20,
-			dropdownParent: $('#dropDownSelect2')
-		});
+        $(".selection-1").select2({
+            minimumResultsForSearch: 20,
+            dropdownParent: $('#dropDownSelect1')
+        });
+
+        $(".selection-2").select2({
+            minimumResultsForSearch: 20,
+            dropdownParent: $('#dropDownSelect2')
+        });
+
 </script>
 
 <!--===============================================================================================-->
@@ -72,30 +74,32 @@
 
 <script type="text/javascript">
 
-    $('.block2-btn-addcart').each(function(){
+        $(document).on('click','.block2-btn-addcart', function(){
 
-        var nameCart = $(this).find('.add_to_cart_button').html();
+            $(this).each(function(){
 
-        var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+                var nameCart = $(this).find('.add_to_cart_button').html();
 
-        $(this).on('click', function(){
+                var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
 
-            $("a.add_to_cart_button ").addClass("added_to_cart");
+                $("a.add_to_cart_button ").addClass("added_to_cart");
 
-            if(nameCart ==='Add to cart') {
-                swal(nameProduct, "is added to cart !", "success");
-            }
+                if(nameCart ==='Add to cart') {
+                    swal(nameProduct, "is added to cart !", "success");
+                }
+
+            });
+        });
+
+        $(document).on('click','.block2-btn-addwishlist', function(){
+
+            $(this).each(function(){
+                var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+                 swal(nameProduct, "is added to wishlist !", "success");
+            });
 
         });
 
-    });
-
-        $('.block2-btn-addwishlist').each(function(){
-        var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-        $(this).on('click', function(){
-            swal(nameProduct, "is added to wishlist !", "success");
-        });
-    });
 </script>
 
 <!--===============================================================================================-->
