@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         <div class="flex-w">
             <!-- Price -->
                 <div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
-                    <select id="orderby_filters" class="selection-2 select2-hidden-accessible orderby_filters" name="orderby" tabindex="-1" aria-hidden="true">
+                    <select id="orderby_filter" class="selection-2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
                         <?php foreach ( $catalog_orderby_options as $id => $name ) : ?>
                             <option value="<?php echo esc_attr( $id ); ?>" <?php selected( $orderby, $id ); ?>><?php echo esc_html( $name ); ?></option>
                         <?php endforeach; ?>

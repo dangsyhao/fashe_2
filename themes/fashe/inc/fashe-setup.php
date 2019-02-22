@@ -154,11 +154,14 @@ add_action( 'wp_ajax_nopriv_LoadProductPagination', 'LoadProductPagination_init'
 function LoadProductPagination_init() {
 
     $posts_per_page = _sanitize_text_fields($_POST['posts_per_page']);
+    $orderby = $_POST['orderby'];
+
 
     $atts =  array(
         'limit'     => $posts_per_page,
         'cat_operator' => 'AND',
-        'paginate'      =>true,
+        'paginate'      =>false,
+        'orderby'   =>$orderby
     );
 
     $shortcode = new fashe_product_shortcode_class( $atts);
@@ -171,7 +174,7 @@ function LoadProductPagination_init() {
 
     echo '</div>';
 
-    //echo $shortcode ->fashe_get_shop_paginate();
+    echo $shortcode ->fashe_get_shop_paginate();
 
     exit();
 }
