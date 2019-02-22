@@ -154,14 +154,11 @@ add_action( 'wp_ajax_nopriv_LoadProductPagination', 'LoadProductPagination_init'
 function LoadProductPagination_init() {
 
     $posts_per_page = _sanitize_text_fields($_POST['posts_per_page']);
-    $orderby = $_POST['orderby'];
-
 
     $atts =  array(
         'limit'     => $posts_per_page,
         'cat_operator' => 'AND',
-        'paginate'      =>false,
-        'orderby'   =>$orderby
+        'paginate'      =>true,
     );
 
     $shortcode = new fashe_product_shortcode_class( $atts);
@@ -170,7 +167,7 @@ function LoadProductPagination_init() {
 
     echo '<div class="row product_results" data-total-results="'.$total_product.'">';
 
-    echo $shortcode->fashe_get_content();
+     echo $shortcode->fashe_get_content();
 
     echo '</div>';
 
@@ -178,7 +175,6 @@ function LoadProductPagination_init() {
 
     exit();
 }
-
 
 /** Xử lý Ajax trong WordPress */
 

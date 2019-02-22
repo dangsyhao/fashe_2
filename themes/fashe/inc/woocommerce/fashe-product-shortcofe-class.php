@@ -148,8 +148,7 @@ class fashe_product_shortcode_class
                 'class' => '',        // HTML class.
                 'page' => 1,         // Page for pagination.
                 'paginate' => false,     // Should results be paginated.
-                'cache' => false,      // Should shortcode output be cached.
-                'html'  =>''
+                'cache' => true,      // Should shortcode output be cached.
             ), $attributes, $this->type
         );
 
@@ -198,7 +197,8 @@ class fashe_product_shortcode_class
             'post_status' => 'publish',
             'ignore_sticky_posts' => true,
             'no_found_rows' => false === wc_string_to_bool($this->attributes['paginate']),
-            'orderby' => empty($_GET['orderby']) ? $this->attributes['orderby'] : wc_clean(wp_unslash($_GET['orderby'])),
+            'orderby' => empty($_POST['orderby']) ? $this->attributes['orderby'] : wc_clean(wp_unslash($_POST['orderby'])),
+            's' => empty($_POST['query_product']) ? '' : wc_clean(wp_unslash($_POST['query_product'])), //Custom By Hao .
         );
 
         $orderby_value = explode('-', $query_args['orderby']);
@@ -209,7 +209,7 @@ class fashe_product_shortcode_class
 
         //
         if (wc_string_to_bool($this->attributes['paginate'])) {
-            $this->attributes['page'] = absint(empty($_POST['data_page']) ? 1 : $_POST['data_page']); // WPCS: input var ok, CSRF ok.
+            $this->attributes['page'] = absint(empty($_POST['num_paged']) ? 1 : $_POST['num_paged']); // WPCS: input var ok, CSRF ok.
         }
 
         if (!empty($this->attributes['rows'])) {
@@ -228,6 +228,7 @@ class fashe_product_shortcode_class
             $query_args['paged'] = absint($this->attributes['page']);
         }
         $query_args['meta_query'] = WC()->query->get_meta_query();
+
         $query_args['tax_query'] = array();
         // @codingStandardsIgnoreEnd
 
@@ -292,9 +293,6 @@ class fashe_product_shortcode_class
     {
         if(isset($_POST['price'])){
 
-            return false;
-        }
-
             $price =  wc_clean( wp_unslash( json_decode($_POST['price'] ) ) );
 
             $query_args['meta_query'][] = array(
@@ -303,6 +301,30 @@ class fashe_product_shortcode_class
                 'compare' => 'BETWEEN',
                 'type'  =>'NUMERIC'
             );
+        }
+
+
+    }
+
+    /**
+     * Set Price query args./Custom by Hao
+     *
+     * @since 3.2.0
+     * @param array $query_args Query sargs.
+     */
+    protected function set_product_name_query_args(&$query_args)
+    {
+        if(isset($_POST['price'])){
+
+            $price =  wc_clean( wp_unslash( json_decode($_POST['price'] ) ) );
+
+            $query_args['post_name'][] = array(
+                'key' => '_price',
+                'value' => $price,
+                'compare' => 'BETWEEN',
+                'type'  =>'NUMERIC'
+            );
+        }
 
 
     }
@@ -732,28 +754,26 @@ class fashe_product_shortcode_class
     /**
      * Get shortcode content.
      *
-     * @since  3.2.0
+     * @since  3.2.0O
      * @return string
      */
     public function fashe_get_shop_paginate()
     {
-//        if($this->attributes['paginate'] === false){
-//             return false ;
-//        }
-//
-//        $products = $this->get_query_results();
-//        $total_pages= $products->total_pages;
-//        $paged=$this->attributes['page'];
-//
-//        $paginate_template= fashe_paginate_ajax(array('total_pages'=>$total_pages,'paged'=>$paged));
+        if($this->attributes['paginate'] === false){
+             return false ;
+        }
 
-//        return $paginate_template;
+        $products = $this->get_query_results();
+        $total_pages= $products->total_pages;
+        $paged=$this->attributes['page'];
+
+        $paginate_template = fashe_paginate_ajax(array('total_pages'=>$total_pages,'paged'=>$paged));
 
         $a = $this->get_query_args();
-        var_dump($a['orderby']);
+
+        return $paginate_template;
 
     }
-
 
     /**
      * Order by rating.

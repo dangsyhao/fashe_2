@@ -17,7 +17,7 @@ get_header(); ?>
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
-                            <?php //get_template_part('template-parts/blocs/left-bar/left-bar');?>
+                            <?php get_template_part('template-parts/blocs/left-bar/left-bar');?>
                         </div>
                         <!-- Product -->
 
