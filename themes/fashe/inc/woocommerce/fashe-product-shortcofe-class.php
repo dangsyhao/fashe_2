@@ -197,8 +197,7 @@ class fashe_product_shortcode_class
             'post_status' => 'publish',
             'ignore_sticky_posts' => true,
             'no_found_rows' => false === wc_string_to_bool($this->attributes['paginate']),
-            //'orderby' => empty($_POST['orderby']) ? $this->attributes['orderby'] : wc_clean(wp_unslash($_POST['orderby'])),
-            'orderby'   =>'price',
+            'orderby' => empty($_POST['orderby']) ? $this->attributes['orderby'] : wc_clean(wp_unslash($_POST['orderby'])),
             //'post_name' => empty($_POST['query_product_name']) ? $this->attributes['query_product_name'] : wc_clean(wp_unslash($_POST['query_product_name']))
         );
 
@@ -210,7 +209,7 @@ class fashe_product_shortcode_class
 
         //
         if (wc_string_to_bool($this->attributes['paginate'])) {
-           // $this->attributes['page'] = absint(empty($_POST['num_paged']) ? 1 : $_POST['num_paged']); // WPCS: input var ok, CSRF ok.
+            $this->attributes['page'] = absint(empty($_POST['num_paged']) ? 1 : $_POST['num_paged']); // WPCS: input var ok, CSRF ok.
         }
 
         if (!empty($this->attributes['rows'])) {
@@ -239,7 +238,7 @@ class fashe_product_shortcode_class
         // SKUs.
         $this->set_skus_query_args($query_args);
         // PRICE./Custom by Hao
-        //$this->set_price_query_args($query_args);
+        $this->set_price_query_args($query_args);
 
         // IDs.
         $this->set_ids_query_args($query_args);

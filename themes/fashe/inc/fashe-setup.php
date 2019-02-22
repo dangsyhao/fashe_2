@@ -171,7 +171,7 @@ function LoadProductPagination_init() {
 
     echo '</div>';
 
-    echo $shortcode ->fashe_get_shop_paginate();
+    //echo $shortcode ->fashe_get_shop_paginate();
 
     exit();
 }
