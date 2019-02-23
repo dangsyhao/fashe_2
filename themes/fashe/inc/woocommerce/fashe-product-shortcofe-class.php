@@ -771,6 +771,8 @@ class fashe_product_shortcode_class
 
         $a = $this->get_query_args();
 
+        var_dump($a['s']);
+
         return $paginate_template;
 
     }

@@ -149,8 +149,7 @@ function fashe_woocommerce_short_code_shop($atts) {
                 var num_paged = (typeof data_page !== 'undefined') ? data_page : paged_default;
                 var orderby_filters = (typeof orderby !== 'undefined') ? orderby : 'popularity';
                 var price_filter = (typeof price !== 'undefined') ? price : false;
-                var query_product_name = (typeof product_name !== 'undefined') ? product_name : false;
-                console.log(query_product_name);
+                var query_product_name = (typeof product_name !== 'undefined') ? product_name :'';
 
                 /** Ajax Call */
                 $.ajax({
@@ -172,7 +171,7 @@ function fashe_woocommerce_short_code_shop($atts) {
                         $('#load_ajax_shop_product').html(data);
                 },
                     error: function (jqXHR, textStatus, errorThrown) {
-                    console.log('The following error occured: ' + textStatus, errorThrown);
+                        console.log('The following error occured: ' + textStatus, errorThrown);
                 },
                     complete: function (jqXHR, textStatus){
 
