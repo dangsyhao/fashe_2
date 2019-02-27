@@ -32,6 +32,10 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="<?= ASSETS_PATH;?>vendor/slick/slick-theme.css">
     <!--===============================================================================================-->
+
+    <link rel="stylesheet" type="text/css" href="<?= ASSETS_PATH;?>vendor/noui/nouislider.min.css">
+
+    <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="<?= ASSETS_PATH;?>vendor/lightbox2/css/lightbox.min.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="<?= ASSETS_PATH;?>css/util.css">

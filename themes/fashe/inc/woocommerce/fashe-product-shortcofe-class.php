@@ -148,6 +148,8 @@ class fashe_product_shortcode_class
                 'class' => '',        // HTML class.
                 'page' => 1,         // Page for pagination.
                 'paginate' => false,     // Should results be paginated.
+                'price' => '',          //query product with Price - by Hao
+                's'     =>'',       //query product with Keyword - by Hao
                 'cache' => true,      // Should shortcode output be cached.
             ), $attributes, $this->type
         );
@@ -193,12 +195,12 @@ class fashe_product_shortcode_class
     protected function parse_query_args()
     {
         $query_args = array(
-            'post_type' => 'product',
-            'post_status' => 'publish',
-            'ignore_sticky_posts' => true,
-            'no_found_rows' => false === wc_string_to_bool($this->attributes['paginate']),
-            'orderby' => empty($_POST['orderby']) ? $this->attributes['orderby'] : wc_clean(wp_unslash($_POST['orderby'])),
-            's' => empty($_POST['query_product']) ? '' : wc_clean(wp_unslash($_POST['query_product'])), //Custom By Hao .
+            'post_type'             => 'product',
+            'post_status'           => 'publish',
+            'ignore_sticky_posts'   => true,
+            'no_found_rows'         => false === wc_string_to_bool($this->attributes['paginate']),
+            'orderby'               => empty( $_GET['orderby'] ) ? $this->attributes['orderby'] : wc_clean( wp_unslash( $_GET['orderby'] ) ),
+            's'                     => $this->attributes['s'] ,
         );
 
         $orderby_value = explode('-', $query_args['orderby']);
@@ -209,7 +211,7 @@ class fashe_product_shortcode_class
 
         //
         if (wc_string_to_bool($this->attributes['paginate'])) {
-            $this->attributes['page'] = absint(empty($_POST['num_paged']) ? 1 : $_POST['num_paged']); // WPCS: input var ok, CSRF ok.
+            $this->attributes['page'] = absint( empty( $_GET['product-page'] ) ? $this->attributes['page'] : $_GET['product-page'] ); // WPCS: input var ok, CSRF ok.
         }
 
         if (!empty($this->attributes['rows'])) {
@@ -291,9 +293,9 @@ class fashe_product_shortcode_class
      */
     protected function set_price_query_args(&$query_args)
     {
-        if(isset($_POST['price'])){
+        $price = $this->attributes['price']; // WPCS: input var ok, CSRF ok.
 
-            $price =  wc_clean( wp_unslash( json_decode($_POST['price'] ) ) );
+        if(count($price) > 0){
 
             $query_args['meta_query'][] = array(
                 'key' => '_price',
@@ -306,28 +308,6 @@ class fashe_product_shortcode_class
 
     }
 
-    /**
-     * Set Price query args./Custom by Hao
-     *
-     * @since 3.2.0
-     * @param array $query_args Query sargs.
-     */
-    protected function set_product_name_query_args(&$query_args)
-    {
-        if(isset($_POST['price'])){
-
-            $price =  wc_clean( wp_unslash( json_decode($_POST['price'] ) ) );
-
-            $query_args['post_name'][] = array(
-                'key' => '_price',
-                'value' => $price,
-                'compare' => 'BETWEEN',
-                'type'  =>'NUMERIC'
-            );
-        }
-
-
-    }
 
     /**
      * Set ids query args.
@@ -769,10 +749,6 @@ class fashe_product_shortcode_class
 
         $paginate_template = fashe_paginate_ajax(array('total_pages'=>$total_pages,'paged'=>$paged));
 
-        $a = $this->get_query_args();
-
-        var_dump($a['s']);
-
         return $paginate_template;
 
     }
@@ -792,6 +768,37 @@ class fashe_product_shortcode_class
         $args['join'] .= "LEFT JOIN $wpdb->comments ON($wpdb->posts.ID = $wpdb->comments.comment_post_ID) LEFT JOIN $wpdb->commentmeta ON($wpdb->comments.comment_ID = $wpdb->commentmeta.comment_id)";
         $args['orderby'] = "$wpdb->commentmeta.meta_value DESC";
         $args['groupby'] = "$wpdb->posts.ID";
+
+        return $args;
+    }
+
+    /**
+     * Order by rating.
+     *
+     * @since  3.2.0
+     * @param  array $args Query args.
+     * @return array
+     */
+    public function fashe_filter_product_by_color($args)
+    {
+        $product_color = isset($_POST['query_product_color']) ? $_POST['query_product_color'] : false ;
+
+        var_dump($product_color);
+
+        if($product_color){
+
+            $args = array(
+                'post_type' => 'post',
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => 'people',
+                        'field'    => 'slug',
+                        'terms'    => 'bob',
+                    ),
+                ),
+            );
+
+        }
 
         return $args;
     }

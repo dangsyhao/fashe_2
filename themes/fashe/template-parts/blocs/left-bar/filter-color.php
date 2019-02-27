@@ -1,42 +1,35 @@
-<div class="filter-color p-t-22 p-b-50 bo3">
+
+<div class="filter-color p-t-22 p-b-50 bo3" id="filter-product-color">
     <div class="m-text15 p-b-12">
         Color
     </div>
 
+    <?php
+
+    global $wpdb;
+
+    $taxonomy_name = "pa_product-color";
+    $term_color_query=$wpdb->get_col($wpdb->prepare(
+                                "
+                                        SELECT wp_terms.name 
+                                        FROM wp_terms 
+                                        INNER JOIN wp_term_taxonomy ON wp_terms.term_id = wp_term_taxonomy.term_id 
+                                        WHERE wp_term_taxonomy.taxonomy = %s
+                                    ",
+                                    $taxonomy_name
+                                    ));
+    ?>
+
     <ul class="flex-w">
-        <li class="m-r-10">
-            <input class="checkbox-color-filter" id="color-filter1" type="checkbox" name="color-filter1">
-            <label class="color-filter color-filter1" for="color-filter1"></label>
-        </li>
+        <?php foreach ($term_color_query as $term_color ): ?>
 
         <li class="m-r-10">
-            <input class="checkbox-color-filter" id="color-filter2" type="checkbox" name="color-filter2">
-            <label class="color-filter color-filter2" for="color-filter2"></label>
+            <input class="checkbox-color-filter" id="input_<?php echo $term_color ;?>" type="checkbox" value="<?php echo $term_color ;?>">
+            <label class="color-filter"  for="input_<?php echo $term_color ;?>" style="background-color: <?php echo $term_color ;?>"></label>
         </li>
 
-        <li class="m-r-10">
-            <input class="checkbox-color-filter" id="color-filter3" type="checkbox" name="color-filter3">
-            <label class="color-filter color-filter3" for="color-filter3"></label>
-        </li>
+            <?php if(count($term_color_query) > 7) break;?>
 
-        <li class="m-r-10">
-            <input class="checkbox-color-filter" id="color-filter4" type="checkbox" name="color-filter4">
-            <label class="color-filter color-filter4" for="color-filter4"></label>
-        </li>
-
-        <li class="m-r-10">
-            <input class="checkbox-color-filter" id="color-filter5" type="checkbox" name="color-filter5">
-            <label class="color-filter color-filter5" for="color-filter5"></label>
-        </li>
-
-        <li class="m-r-10">
-            <input class="checkbox-color-filter" id="color-filter6" type="checkbox" name="color-filter6">
-            <label class="color-filter color-filter6" for="color-filter6"></label>
-        </li>
-
-        <li class="m-r-10">
-            <input class="checkbox-color-filter" id="color-filter7" type="checkbox" name="color-filter7">
-            <label class="color-filter color-filter7" for="color-filter7"></label>
-        </li>
+        <?php endforeach ;?>
     </ul>
 </div>

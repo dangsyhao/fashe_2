@@ -142,14 +142,14 @@ function fashe_woocommerce_short_code_shop($atts) {
             var paged_default ="<?php echo $atts['page']?>";
             var posts_per_page = "<?php echo $atts['per_page'];?>";
 
-
             // Load Products Function .
-            function load_products_ajax(data_page,orderby,price,product_name) {
+            function load_products_ajax(data_page,orderby,price,product_name,product_color) {
 
                 var num_paged = (typeof data_page !== 'undefined') ? data_page : paged_default;
                 var orderby_filters = (typeof orderby !== 'undefined') ? orderby : 'popularity';
-                var price_filter = (typeof price !== 'undefined') ? price : false;
+                var price_filter = (typeof price !== 'undefined') ? price : '';
                 var query_product_name = (typeof product_name !== 'undefined') ? product_name :'';
+                var query_product_color = (typeof product_color !== 'undefined') ? product_color :'';
 
                 /** Ajax Call */
                 $.ajax({
@@ -162,7 +162,8 @@ function fashe_woocommerce_short_code_shop($atts) {
                         posts_per_page: posts_per_page,
                         orderby : orderby_filters,
                         price : price_filter,
-                        query_product : query_product_name,
+                        query_keyword : query_product_name,
+                        query_product_color : query_product_color
                     }),
                     beforeSend: function () {
                 },
@@ -175,9 +176,9 @@ function fashe_woocommerce_short_code_shop($atts) {
                 },
                     complete: function (jqXHR, textStatus){
 
+                        //Show total results after Loaded ajax product .
                         var total_results = $('div.product_results').attr('data-total-results');
                         $('span.show_all_results').html(total_results);
-
                 }
 
                 });
@@ -198,8 +199,10 @@ function fashe_woocommerce_short_code_shop($atts) {
 
                 var product_name = $('#left-bar-search-product').val();
 
-                load_products_ajax(data_page,orderby,price,product_name);
+                var product_color = $( "input.checkbox-color-filter:checked" ).val();
 
+
+                load_products_ajax(data_page,orderby,price,product_name,product_color);
             });
 
             //Load Product filters by Price box
@@ -213,8 +216,10 @@ function fashe_woocommerce_short_code_shop($atts) {
 
                 var product_name = $('#left-bar-search-product').val();
 
-                load_products_ajax(data_page,orderby,price,product_name);
+                var product_color = $( "input.checkbox-color-filter:checked" ).val();
 
+
+                load_products_ajax(data_page,orderby,price,product_name,product_color);
             });
 
 
@@ -226,11 +231,12 @@ function fashe_woocommerce_short_code_shop($atts) {
               var orderby = $('#orderby_filters option:selected').attr('value');
               var data_page = $(this).attr('data-page');
               var price = $('#orderby_price option:selected').attr('value');
+              var product_name = $('#left-bar-search-product').val();
 
-                var product_name = $('#left-bar-search-product').val();
+                var product_color = $( "input.checkbox-color-filter:checked" ).val();
 
-                load_products_ajax(data_page,orderby,price,product_name);
 
+                load_products_ajax(data_page,orderby,price,product_name,product_color);
             })
 
             //Load page with Search Product
@@ -242,10 +248,60 @@ function fashe_woocommerce_short_code_shop($atts) {
                 var price = $('#orderby_price option:selected').attr('value');
                 var product_name = $(this).val();
 
-                load_products_ajax(data_page,orderby,price,product_name);
+                var product_color = $( "input.checkbox-color-filter:checked" ).val();
+
+
+                load_products_ajax(data_page,orderby,price,product_name,product_color);
 
             });
 
+            //Load page with Pagination
+
+            $( "#filter-product-color" ).on( "click",'input.checkbox-color-filter',function() {
+
+                /** Get data-page */
+                var orderby = $('#orderby_filters option:selected').attr('value');
+                var data_page = $(this).attr('data-page');
+                var price = $('#orderby_price option:selected').attr('value');
+                var product_name = $('#left-bar-search-product').val();
+
+                var box = $(this);
+
+                    box.attr('name','notCheck')
+
+                if (box.is(":checked")) {
+
+                    var group = "input:checkbox[name='" + box.attr("name") + "']";
+
+                    $(group).prop("checked", false);
+
+                    box.prop("checked",true);
+                }
+
+                var product_color = $( "input.checkbox-color-filter:checked" ).val();
+
+                load_products_ajax(data_page,orderby,price,product_name,product_color);
+
+            });
+
+            //Load page with Pagination
+            $('#price-noui-filter-button').on('click',function () {
+                /** Get data-page */
+                var orderby = $('#orderby_filters option:selected').attr('aria-valuetext');
+                var data_page = $(this).attr('data-page');
+                //var price = $('#orderby_price option:selected').attr('value');
+                var product_name = $('#left-bar-search-product').val();
+                var product_color = $( "input.checkbox-color-filter:checked" ).val();
+
+                //Price Filters
+                var price_lower = $('#value-lower').text();
+                var price_upper = $('#value-upper').text();
+
+                var price_noui = [price_lower,price_lower];
+                console.log(price_noui);
+
+                load_products_ajax(data_page,orderby,price,product_name,product_color);
+            })
 
 
         })//End javascript
