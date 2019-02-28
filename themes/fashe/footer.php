@@ -110,11 +110,11 @@
 	    var filterBar = document.getElementById('filter-bar');
 
 	    noUiSlider.create(filterBar, {
-	        start: [ 50, 200 ],
+	        start: [ 0,300 ],
 	        connect: true,
 	        range: {
-	            'min': 50,
-	            'max': 200
+	            'min': 0,
+	            'max': 300
 	        }
 	    });
 

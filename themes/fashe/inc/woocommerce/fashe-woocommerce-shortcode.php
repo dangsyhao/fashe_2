@@ -130,11 +130,9 @@ function fashe_woocommerce_short_code_shop($atts) {
         'paginate'      =>true
     ), $atts);
 
-
 ?>
 
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-
     <script type="text/javascript">
 
         $(document).ready(function() {
@@ -143,13 +141,17 @@ function fashe_woocommerce_short_code_shop($atts) {
             var posts_per_page = "<?php echo $atts['per_page'];?>";
 
             // Load Products Function .
-            function load_products_ajax(data_page,orderby,price,product_name,product_color) {
+            function load_products_ajax( paged_default , price) {
 
-                var num_paged = (typeof data_page !== 'undefined') ? data_page : paged_default;
-                var orderby_filters = (typeof orderby !== 'undefined') ? orderby : 'popularity';
-                var price_filter = (typeof price !== 'undefined') ? price : '';
-                var query_product_name = (typeof product_name !== 'undefined') ? product_name :'';
-                var query_product_color = (typeof product_color !== 'undefined') ? product_color :'';
+                /** Get data-page */
+                 var paged = ( paged_default === false ) ? $('div.pagination a').attr('data-page') : 1 ;
+                 var orderby = ( paged_default === false) ? $('#orderby_filters option:selected').attr('value') : 'popularity';
+
+                 //Set Price filter Bar .
+                 price = ( paged_default === false && typeof price !== 'undefined') ? price : '';
+
+                 var query_keyword = ( paged_default === false) ? $('#left-bar-search-product').val() : '';
+                 var query_product_color = ( paged_default === false) ? $( "input.checkbox-color-filter:checked" ).val() : '';
 
                 /** Ajax Call */
                 $.ajax({
@@ -158,11 +160,11 @@ function fashe_woocommerce_short_code_shop($atts) {
                     type: "POST",
                     data: ({
                         action: 'LoadProductPagination',
-                        num_paged: num_paged,
+                        paged: paged,
                         posts_per_page: posts_per_page,
-                        orderby : orderby_filters,
-                        price : price_filter,
-                        query_keyword : query_product_name,
+                        orderby : orderby,
+                        price : price,
+                        query_keyword : query_keyword,
                         query_product_color : query_product_color
                     }),
                     beforeSend: function () {
@@ -186,121 +188,70 @@ function fashe_woocommerce_short_code_shop($atts) {
             }//End function
 
             //Load Page Default .
-            load_products_ajax();
+            load_products_ajax( paged_default = true );
 
             //Load Product filters by orderby box
-
             $('#orderby_filters').change(function() {
 
-                /** Get data-page */
-                var orderby = $('#orderby_filters option:selected').attr('value');
-                var data_page = $('div.pagination a').attr('data-page');
-                var price = $('#orderby_price option:selected').attr('value');
-
-                var product_name = $('#left-bar-search-product').val();
-
-                var product_color = $( "input.checkbox-color-filter:checked" ).val();
-
-
-                load_products_ajax(data_page,orderby,price,product_name,product_color);
+                load_products_ajax(paged_default = false);
             });
 
             //Load Product filters by Price box
-
             $('#orderby_price').change(function() {
 
-                /** Get data-page */
-                var orderby = $('#orderby_filters option:selected').attr('value');
-                var data_page = $('div.pagination a').attr('data-page');
-                var price = $('#orderby_price option:selected').attr('value');
+                var price_filter_box = $('#orderby_price option:selected').attr('value');
+                var price = ( typeof price_filter_box !== 'undefined') ? $.parseJSON(price_filter_box) : '' ;
 
-                var product_name = $('#left-bar-search-product').val();
+                load_products_ajax(paged_default = false , price );
 
-                var product_color = $( "input.checkbox-color-filter:checked" ).val();
+                // Reset noUI Slide
+                jQuery('#filter-bar')[0].noUiSlider.reset();
 
-
-                load_products_ajax(data_page,orderby,price,product_name,product_color);
             });
 
 
             //Load page with Pagination
-            $('#load_ajax_shop_product').on('click', 'div.pagination a', function (e) {
+            $('#load_ajax_shop_product').on('click', 'div.pagination a', function () {
 
-                e.preventDefault();
-                /** Get data-page */
-              var orderby = $('#orderby_filters option:selected').attr('value');
-              var data_page = $(this).attr('data-page');
-              var price = $('#orderby_price option:selected').attr('value');
-              var product_name = $('#left-bar-search-product').val();
-
-                var product_color = $( "input.checkbox-color-filter:checked" ).val();
-
-
-                load_products_ajax(data_page,orderby,price,product_name,product_color);
+                load_products_ajax();
             })
 
             //Load page with Search Product
             $('#left-bar-search-product').on('keyup',function () {
 
-                /** Get data-page */
-                var orderby = $('#orderby_filters option:selected').attr('value');
-                var data_page = $(this).attr('data-page');
-                var price = $('#orderby_price option:selected').attr('value');
-                var product_name = $(this).val();
-
-                var product_color = $( "input.checkbox-color-filter:checked" ).val();
-
-
-                load_products_ajax(data_page,orderby,price,product_name,product_color);
+                load_products_ajax(paged_default = false);
 
             });
 
             //Load page with Pagination
-
             $( "#filter-product-color" ).on( "click",'input.checkbox-color-filter',function() {
 
-                /** Get data-page */
-                var orderby = $('#orderby_filters option:selected').attr('value');
-                var data_page = $(this).attr('data-page');
-                var price = $('#orderby_price option:selected').attr('value');
-                var product_name = $('#left-bar-search-product').val();
-
                 var box = $(this);
+                box.attr('name','notCheck');
 
-                    box.attr('name','notCheck')
-
-                if (box.is(":checked")) {
-
+                if (box.is(":checked"))
+                {
                     var group = "input:checkbox[name='" + box.attr("name") + "']";
-
                     $(group).prop("checked", false);
-
                     box.prop("checked",true);
                 }
 
-                var product_color = $( "input.checkbox-color-filter:checked" ).val();
-
-                load_products_ajax(data_page,orderby,price,product_name,product_color);
+                load_products_ajax(paged_default = false);
 
             });
 
+
             //Load page with Pagination
             $('#price-noui-filter-button').on('click',function () {
-                /** Get data-page */
-                var orderby = $('#orderby_filters option:selected').attr('aria-valuetext');
-                var data_page = $(this).attr('data-page');
-                //var price = $('#orderby_price option:selected').attr('value');
-                var product_name = $('#left-bar-search-product').val();
-                var product_color = $( "input.checkbox-color-filter:checked" ).val();
 
-                //Price Filters
                 var price_lower = $('#value-lower').text();
                 var price_upper = $('#value-upper').text();
+                var price = [price_lower,price_upper];
 
-                var price_noui = [price_lower,price_lower];
-                console.log(price_noui);
+                load_products_ajax(paged_default = false , price );
 
-                load_products_ajax(data_page,orderby,price,product_name,product_color);
+                //Reset Filter Price by Price box
+                $('#orderby_price option:first').prop('selected',true);
             })
 
 
