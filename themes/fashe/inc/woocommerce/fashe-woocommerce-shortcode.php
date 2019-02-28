@@ -252,6 +252,7 @@ function fashe_woocommerce_short_code_shop($atts) {
 
                 //Reset Filter Price by Price box
                 $('#orderby_price option:first').prop('selected',true);
+                $('span.select2-selection__rendered').text('Price');
             })
 
 
