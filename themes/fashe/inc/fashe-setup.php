@@ -161,12 +161,15 @@ function LoadProductPagination_init() {
     $orderby = isset($_POST['orderby']) && $_POST['orderby'] !== '' ? wc_clean( wp_unslash( $_POST['orderby'] )) :false;
     $keyword = isset($_POST['query_keyword']) ? wc_clean( wp_unslash( $_POST['query_keyword'] )) :'';
     $price = isset($_POST['price']) && $_POST['price'] !== '' ?  wc_clean( wp_unslash( $_POST['price'] ) ) :false;
+    $category = isset($_POST['filter_by_cat']) ? wc_clean( wp_unslash( $_POST['filter_by_cat'] )) :'';
+
 
     //Put Data to Product Shorcode
     $atts =  array(
         'limit'     => $posts_per_page,
         'cat_operator' => 'AND',
         'orderby'       => $orderby,
+        'category'      => $category,
         'page'          => $paged,
         'paginate'      => true,
         's'             => $keyword,

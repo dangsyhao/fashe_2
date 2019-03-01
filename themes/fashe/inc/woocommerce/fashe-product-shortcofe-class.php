@@ -295,7 +295,7 @@ class fashe_product_shortcode_class
     {
         $price = $this->attributes['price']; // WPCS: input var ok, CSRF ok.
 
-        if(count($price) > 0){
+        if(is_array($price) && count($price) > 0){
 
             $query_args['meta_query'][] = array(
                 'key' => '_price',

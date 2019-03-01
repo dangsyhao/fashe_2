@@ -25,7 +25,7 @@
 
         <li class="m-r-10">
             <input class="checkbox-color-filter" id="input_<?php echo $term_color ;?>" type="checkbox" value="<?php echo $term_color ;?>">
-            <label class="color-filter"  for="input_<?php echo $term_color ;?>" style="background-color: <?php echo $term_color ;?>"></label>
+            <label class="color-filter"  for="input_<?php echo $term_color ;?>" style="background-color: <?php echo $term_color ;?>" title="<?php echo $term_color ;?>"></label>
         </li>
 
             <?php if(count($term_color_query) > 7) break;?>

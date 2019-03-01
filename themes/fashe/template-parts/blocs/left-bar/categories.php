@@ -1,35 +1,27 @@
 <h4 class="m-text14 p-b-7">
     Categories
 </h4>
+<?php $product_cats = get_terms( array(
+                                        'taxonomy' => 'product_cat',
+                                        'hide_empty' => false,
+                                        ) );?>
 
-<ul class="p-b-54">
-    <li class="p-t-4">
+<ul class="p-b-54" id ="get_product_cat_ajax">
+
+    <li class="p-t-4 get_product_cat_ajax" value = "">
         <a href="#" class="s-text13 active1">
             All
         </a>
     </li>
 
-    <li class="p-t-4">
-        <a href="#" class="s-text13">
-            Women
+<?php foreach ($product_cats as $product_cat ) :?>
+
+    <li class="p-t-4" value="<?php echo $product_cat->name ;?>">
+        <a href="#" class="s-text13 active1">
+            <?php echo $product_cat->name ;?>
         </a>
     </li>
 
-    <li class="p-t-4">
-        <a href="#" class="s-text13">
-            Men
-        </a>
-    </li>
+    <?php endforeach; ?>
 
-    <li class="p-t-4">
-        <a href="#" class="s-text13">
-            Kids
-        </a>
-    </li>
-
-    <li class="p-t-4">
-        <a href="#" class="s-text13">
-            Accesories
-        </a>
-    </li>
 </ul>
