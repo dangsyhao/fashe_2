@@ -155,14 +155,13 @@ function LoadProductPagination_init() {
 
     //Get Data From Ajax .
     $posts_per_page = _sanitize_text_fields($_POST['posts_per_page']);
-    $paged = isset($_POST['paged']) && $_POST['paged'] !== 1 ? wc_clean( wp_unslash( intval($_POST['paged']) )) : false ;
+    $paged = isset($_POST['paged']) ? wc_clean( wp_unslash( intval($_POST['paged']) )) : false ;
     $product_color_att = isset($_POST['query_product_color']) && $_POST['query_product_color'] !== '' ? 'product-color' : false;
     $produc_color_term = isset($_POST['query_product_color']) && $_POST['query_product_color'] !== '' ? wc_clean( wp_unslash( $_POST['query_product_color'] )) :false;
     $orderby = isset($_POST['orderby']) && $_POST['orderby'] !== '' ? wc_clean( wp_unslash( $_POST['orderby'] )) :false;
     $keyword = isset($_POST['query_keyword']) ? wc_clean( wp_unslash( $_POST['query_keyword'] )) :'';
     $price = isset($_POST['price']) && $_POST['price'] !== '' ?  wc_clean( wp_unslash( $_POST['price'] ) ) :false;
     $category = isset($_POST['filter_by_cat']) ? wc_clean( wp_unslash( $_POST['filter_by_cat'] )) :'';
-
 
     //Put Data to Product Shorcode
     $atts =  array(

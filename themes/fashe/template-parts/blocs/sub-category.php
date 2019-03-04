@@ -18,7 +18,7 @@
                     ?>
                     <div class="block1-wrapbtn w-size2">
                         <!-- Button -->
-                        <a href="<?= get_category_link($category[$j]->term_id)?>" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+                        <a href="<?php echo "/shop?query_cat_name=".$category[$j]->name ;?>" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
                             <?= $category[$j]->name; ?>
                         </a>
                     </div>

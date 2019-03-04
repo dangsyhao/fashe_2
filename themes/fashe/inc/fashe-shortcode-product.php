@@ -36,7 +36,6 @@ function fashe_featured_products_right_bar( $atts )
 
     wp_reset_postdata();
 
-
    // return ob_get_clean();
 }
 

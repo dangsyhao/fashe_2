@@ -130,7 +130,7 @@ function fashe_get_tag_close($tag_open){
 
 
 /******************
-Function phân trang PHP có dạng 1,2,3 ...
+Function phân trang trong Blog 
  ********************/
 
 function query_ajax_pagination( $args){
@@ -185,7 +185,7 @@ function fashe_paginate_ajax($args)
 {
 
     $args_merge = array_merge(array(
-                                    'posts_per_page' => '5',
+                                    'posts_per_page' => '6',
                                     'paged' => '1',
                                     'total_pages' => '0'
                                     ), (array)$args );
@@ -195,13 +195,15 @@ function fashe_paginate_ajax($args)
         return '';
     }
 
+    var_dump($args_merge['total_pages']);
+
     ob_start();
 
     ?>
 
-    <div class="pagination flex-m flex-w p-t-26">
+    <div class="pagination flex-m flex-w p-t-26" id ="paginative_product_ajax">
         <?php for($i=1;$i<=$args_merge['total_pages'];$i++):?>
-            <a  class="item-pagination flex-c-m trans-0-4 <?= ($args_merge['paged']==$i)?'active-pagination':'';?>" href="#" data-page="<?=$i?>"><?= $i;?></a>
+            <a  class="item-pagination flex-c-m trans-0-4 <?= ($args_merge['paged']==$i)?'active-pagination':'';?>" href="#" data-page="<?= $i;?>"><?= $i;?></a>
         <?php endfor;?>
     </div>
     <?php

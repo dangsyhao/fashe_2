@@ -8,8 +8,8 @@
 
 <ul class="p-b-54" id ="get_product_cat_ajax">
 
-    <li class="p-t-4 get_product_cat_ajax" value = "">
-        <a href="#" class="s-text13 active1">
+    <li class="p-t-4" value = "">
+        <a href="#" class="s-text13" >
             All
         </a>
     </li>
@@ -17,7 +17,7 @@
 <?php foreach ($product_cats as $product_cat ) :?>
 
     <li class="p-t-4" value="<?php echo $product_cat->name ;?>">
-        <a href="#" class="s-text13 active1">
+        <a href="#" class="s-text13">
             <?php echo $product_cat->name ;?>
         </a>
     </li>

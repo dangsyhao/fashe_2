@@ -4,16 +4,16 @@
  *
  */
 function feshe_recent_product_loop_home( $atts ){
-    $atts = array_merge( array(
+    $atts = array(
         'limit'        => 12,
         'columns'      => 4,
         'orderby'      => 'date',
         'order'        => 'DESC',
         'category'     => '',
         'cat_operator' => 'IN',
-    ), (array) $atts );
+    );
 
-    $shortcode = new fashe_product_shortcode_class( $atts, 'recent_products' );
+    $shortcode = new fashe_product_shortcode_class( $atts) ;
     return $shortcode->fashe_get_content();
 }
 
@@ -30,7 +30,6 @@ function fashe_product_categories_loop_home( $atts ) {
         'limit'      => '-1',
         'orderby'    => 'term_id',
         'order'      => 'DESC',
-        'columns'    => '4',
         'hide_empty' => 1,
         'parent'     => '',
         'ids'        => '',
@@ -72,9 +71,6 @@ function fashe_product_categories_loop_home( $atts ) {
 
     $columns = absint( $atts['columns'] );
 
-    wc_set_loop_prop( 'columns', $columns );
-    wc_set_loop_prop( 'is_shortcode', true );
-
     ob_start();
 
     if ( $product_categories ) {
@@ -87,36 +83,9 @@ function fashe_product_categories_loop_home( $atts ) {
         woocommerce_product_loop_end();
     }
 
-    woocommerce_reset_loop();
-
     return ob_get_clean();
 }
 
-/**
- * List products in a category shortcode.
- *
- * @param array $atts Attributes.
- * @return string
- */
-function fashe_woocommerce_product_category( $atts ) {
-
-    if ( empty( $atts['category'] ) ) {
-       return '';
-    }
-
-    $atts = array_merge( array(
-        'per_page'     => 6,
-        'orderby'      => 'menu_order title',
-        'order'        => 'ASC',
-        'category'     => '',
-        'cat_operator' => 'AND',
-        'paginate'     =>true
-    ), (array) $atts );
-
-    $shortcode = new fashe_product_shortcode_class( $atts, 'product_category' );
-
-    return $shortcode->fashe_get_content();
-}
 
 /**
  * Show Short Code Product.
@@ -129,6 +98,8 @@ function fashe_woocommerce_short_code_shop($atts) {
         'page'  => 1,
         'paginate'      =>true
     ), $atts);
+
+    $query_cat_name = isset($_GET['query_cat_name']) ? $_GET['query_cat_name'] : '';
 ?>
 
 
@@ -139,7 +110,8 @@ function fashe_woocommerce_short_code_shop($atts) {
 
             var paged_default = "<?php echo $atts['page']?>";
             var posts_per_page = "<?php echo $atts['per_page'];?>";
-            var paged ;
+            var query_cat_name = "<?php echo $query_cat_name ;?>"
+            var paged = paged_default;
             var orderby ;
             var price;
             var query_keyword;
@@ -156,8 +128,8 @@ function fashe_woocommerce_short_code_shop($atts) {
                 var query_keyword_ajax = (page_default === false) ? query_keyword : '';
                 var query_product_color_ajax = (page_default === false) ? query_product_color : '';
                 var filter_by_cat_ajax = (page_default === false) ? filter_by_cat : '';
-
-                console.log(paged_ajax);
+                //get Product if have choose category from home page .
+                if( query_cat_name !== '') filter_by_cat_ajax = query_cat_name ;
 
                 /** Ajax Call */
                 $.ajax({
@@ -220,8 +192,9 @@ function fashe_woocommerce_short_code_shop($atts) {
             });
 
             //Load page with Pagination
-            $('#load_ajax_shop_product').on('click', 'div.pagination a', function () {
-                paged = $('div.pagination a').attr('data-page');
+            $('#load_ajax_shop_product').on('click', '#paginative_product_ajax a', function () {
+                paged = $(this).attr('data-page');
+                console.log('Jquery',paged);
                 load_products_ajax(page_default = false);
             });
 

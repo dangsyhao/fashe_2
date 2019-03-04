@@ -16,7 +16,7 @@
                 <!-- Product -->
                 <div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
                     <?php if (have_posts()):the_post();?>
-                        <?php global $product;?>
+                        <?php global $product; var_dump($product);?>
                         <?php do_action('fashe_woocommerce_product_category',array('category'=>$product->get_categories()));?>
                     <?php endif;?>
                 </div>
