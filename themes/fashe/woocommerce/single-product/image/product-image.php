@@ -25,7 +25,9 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
     <div class="wrap-slick3 flex-sb flex-w">
         <div class="wrap-slick3-dots"></div>
 
-        <div class="slick3 <?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', $wrapper_classes ) ) ); ?>" data-columns="<?php echo esc_attr( $columns ); ?>" style="opacity: 0; transition: opacity .25s ease-in-out;">
+        <div class="slick3">
+
+
                 <?php
 
                 foreach (array_reverse($attachment_ids) as $attachment_id){
@@ -34,6 +36,7 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
                 }
 
                 ?>
+
         </div>
     </div>
 </div>

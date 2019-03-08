@@ -296,15 +296,15 @@ function fashe_wc_get_gallery_image_html( $attachment_id, $main_image = false ) 
     $full_src          = wp_get_attachment_image_src( $attachment_id, $full_size );
     $image             = wp_get_attachment_image( $attachment_id, $image_size, false, array(
         'title'                   => get_post_field( 'post_title', $attachment_id ),
-        'data-caption'            => get_post_field( 'post_excerpt', $attachment_id ),
-        'data-src'                => $full_src[0],
-        'data-large_image'        => $full_src[0],
-        'data-large_image_width'  => $full_src[1],
-        'data-large_image_height' => $full_src[2],
-        'class'                   => $main_image ? 'wp-post-image' : '',
+       // 'data-caption'            => get_post_field( 'post_excerpt', $attachment_id ),
+      //  'data-src'                => $full_src[0],
+      //  'data-large_image'        => $full_src[0],
+      //  'data-large_image_width'  => $full_src[1],
+      //  'data-large_image_height' => $full_src[2],
+        'class'                   => $main_image ? 'wc-product-feature-img' : '',
     ) );
 
-    return '<div data-thumb="' . esc_url( $thumbnail_src[0] ) . '" class="item-slick3 woocommerce-product-gallery__image"><div class="wrap-pic-w">' . $image . '</div></div>';
+    return '<div data-thumb="' . esc_url( $thumbnail_src[0] ) . '" class="item-slick3"><div class="wrap-pic-w">' . $image . '</div></div>';
 }
 
     /**

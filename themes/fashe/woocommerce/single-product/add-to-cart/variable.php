@@ -43,17 +43,19 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
                                     'attribute' => $attribute_name,
                                     'product'   => $product,
                                 ) );
-                                //echo end( $attribute_keys ) === $attribute_name ? wp_kses_post( apply_filters( 'woocommerce_reset_variations_link', '<a class="reset_variations" href="#">' . esc_html__( 'Clear', 'woocommerce' ) . '</a>' ) ) : '';
                             ?>
                         </div>
 
                     </div>
+
 				<?php endforeach; ?>
+
 		</div>
 
 		<div class="flex-r-m flex-w p-t-10 single_variation_wrap">
             <div class="w-size16 flex-m flex-w">
                 <?php
+
                     /**
                      * Hook: woocommerce_before_single_variation.
                      */
@@ -83,5 +85,15 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
 </form>
 
-<?php
-do_action( 'woocommerce_after_add_to_cart_form' );
+<?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>
+
+<!--Append variation product-->
+<div class="variation-product-desc" ></div>
+
+<div class="row" >
+    <div class="col text-center">
+    <button class="btn btn-primary btn-sm col-md-11 col-xs-11 variation-reset-btn" hidden >Reset</button>
+    </div>
+</div>
+
+

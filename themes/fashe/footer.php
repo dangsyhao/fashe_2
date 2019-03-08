@@ -64,6 +64,9 @@
 <script type="text/javascript" src="<?= ASSETS_PATH;?>vendor/slick/slick.min.js"></script>
 
 <script type="text/javascript" src="<?= ASSETS_PATH;?>js/slick-custom.js"></script>
+
+<script type="text/javascript" src="<?= ASSETS_PATH;?>js/slick-custom-variation.js"></script>
+
 <!--===============================================================================================-->
 <script type="text/javascript" src="<?= ASSETS_PATH;?>vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->

@@ -2,7 +2,7 @@
 
 global $product;
 ?>
-<div class="p-b-45">
+<div class="p-b-45 meta-product">
 
 <?php do_action( 'woocommerce_product_meta_start' ); ?>
 
