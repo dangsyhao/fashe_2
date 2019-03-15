@@ -5,6 +5,11 @@
     <title><?= get_bloginfo('title');?></title>
     <meta charset="<?= get_bloginfo('charset');?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <?php wp_head();?>
+
+    <script type="text/javascript" src="<?= ASSETS_PATH;?>vendor/jquery/jquery-3.2.1.min.js"></script>
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="<?= ASSETS_PATH;?>images/icons/favicon.png"/>
     <!--===============================================================================================-->
@@ -32,19 +37,16 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="<?= ASSETS_PATH;?>vendor/slick/slick-theme.css">
     <!--===============================================================================================-->
-
     <link rel="stylesheet" type="text/css" href="<?= ASSETS_PATH;?>vendor/noui/nouislider.min.css">
-
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="<?= ASSETS_PATH;?>vendor/lightbox2/css/lightbox.min.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="<?= ASSETS_PATH;?>css/util.css">
     <!--===============================================================================================-->
-
     <link rel="stylesheet" type="text/css" href="<?= ASSETS_PATH;?>css/main.css">
     <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?= ASSETS_PATH;?>css/woocommerce_css/woocommerce.css">
 
-    <?php wp_head();?>
     <?php get_header( 'shop' );?>
 
     <!--===============================================================================================-->

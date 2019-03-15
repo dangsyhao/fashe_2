@@ -1,6 +1,5 @@
-
-/*
-    *JS File created by Dang Sy Hao
+/**
+ * Created : Dang Sy Hao .
  */
 
 $(document).ready(function () {

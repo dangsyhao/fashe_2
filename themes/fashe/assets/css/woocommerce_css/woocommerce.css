@@ -1,0 +1,226 @@
+
+/**
+* Woocommerce Pages
+ */
+
+div.container div.woocommerce {
+    border: solid;
+    padding: 2rem;
+    border-width: 1rem;
+    border-color: #a36597;
+    border-radius: 4px;
+}
+
+
+
+
+/*
+ * My Account Custom CSS
+ */
+.woocommerce .col2-set .col-1, .woocommerce-page .col2-set .col-1 {
+    float: left;
+    width: 50%;
+    max-width: 100%;
+}
+
+nav.woocommerce-MyAccount-navigation {
+    border: solid;
+    border-color: #3e2f52;
+    border-width: 1px;
+    border-radius: 4px;
+    padding: 1em;
+    padding-left: 3em;
+}
+
+.woocommerce form .form-row input.input-text {
+    box-sizing: border-box;
+    max-width: 100% !important;
+    width : 20em!important;
+    margin: 0;
+    outline: 0;
+    line-height: normal;
+    border: solid 0.5px #888888 !important; ;
+    height: 1.7em;
+    padding: 1em;
+    border-radius: 0.25em;
+}
+
+.woocommerce form .form-row textarea {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    outline: 0;
+    line-height: normal;
+    border-color: #888888;
+    height: 1.7em;
+    padding: 1em;
+    border-radius: 0.25em;
+}
+
+
+ul, li.woocommerce-MyAccount-navigation-link{
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    list-style-type: none;
+}
+
+
+li.woocommerce-MyAccount-navigation-link a {
+    font-family: Montserrat-Regular;
+    font-weight: 400;
+    font-size: 23px;
+    color: #666666;
+    margin: 0px;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    text-decoration: underline;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+}
+
+div.woocommerce-MyAccount-content {
+    margin-top: 2em;
+    box-sizing: border-box;
+}
+
+header.woocommerce-Address-title{
+    margin-top : 1em;
+    margin-bottom: 1em;
+}
+
+.woocommerce .col2-set .col-2, .woocommerce-page .col2-set .col-2 {
+    /* float: right; */
+    width: 50% ;
+    max-width : 100% ;
+}
+
+.woocommerce-Address address {
+    margin-bottom: 1rem;
+    font-style: normal;
+    line-height: inherit;
+    width: 20em;
+}
+
+/*Account Detail*/
+
+
+
+/*Address*/
+header.woocommerce-Address-title {
+    width: 20rem;
+}
+
+.woocommerce-Address .woocommerce-Address-title a {
+    color: red;
+}
+
+
+
+/**
+    * Custom CSS for Checkout Page
+ */
+
+
+.woocommerce form .form-row input.input-text{
+    box-sizing: border-box;
+    margin: 0;
+    outline: 0;
+    line-height: normal;
+    border-color:#888888 !important;
+    border-radius: 0.25em;
+    height: 1.7em;
+}
+
+.form-row .woocommerce-input-wrapper .select2-container--default .select2-selection--single .select2-selection__rendered {
+    box-sizing: border-box;
+    margin: 0;
+    width: 20em;
+    height: 2.15em!important;
+    line-height: 2.15em;
+    padding-left: 1em;
+    border-width: 1px;
+    border-style: solid;
+    border-color:#888888 !important;
+    border-radius: 0.25em ;
+    color: black ;
+    font-family: inherit;
+    font-size: inherit ;
+
+}
+
+.woocommerce form .form-row .input-text, .woocommerce-page form .form-row .input-text {
+    box-sizing: border-box;
+    width: 500% ;
+    padding-left: 0.3em;
+}
+
+#order_comments {
+    box-sizing: border-box;
+    width: 400% ;
+    min-height: 10em;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: 50%;
+    transform: none;
+    right: 0px;
+    transform: none;
+    lay: -webkit-flex;
+    display: none;
+    display: none;
+    display: none;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+form.woocommerce-checkout div.row {
+
+    display: -ms-flexbox;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: 0;
+
+}
+
+div.woocommerce-billing-fields h3{
+    margin-bottom: 1em;
+}
+
+div.woocommerce-billing-fields h3{
+    margin-bottom: 1em;
+}
+
+.woocommerce-Address .woocommerce-Address-title a {
+    margin-top: 3em;
+    text-decoration: brown;
+
+}
+
+.woocommerce .col2-set, .woocommerce-page .col2-set {
+    width: 100%;
+    margin-left: -1em;
+}
+
+
+.woocommerce form .form-row label {
+    width :100% ;
+}
+
+.woocommerce-billing-fields #billing_address_2_field>label {
+    width :100% !important;
+}
+
+/*Your Order*/
+
+#order_review_heading {
+    margin-top :1.5rem ;
+    margin-bottom: 0.5rem;
+    color: #2f0024;
+}
+
+
+/**
+** Cart Page
+ */
+

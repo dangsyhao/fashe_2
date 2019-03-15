@@ -1,0 +1,184 @@
+/*
+Theme Name: Touring Zone Lite
+Theme URI: https://gracethemes.com/themes/free-tours-travel-wordpress-theme/
+Author: Grace Themes
+Author URI: https://gracethemes.com/
+Description: Touring Zone Lite is a clean and simple to use free Tours and Travel WordPress theme. It is developed to create a website for tour and travel agencies, tour operators and tour companies. This free theme can also be used for hotels and resorts, travel agents, vacation cruise, adventure travel and other travel related businesses. This responsive and highly customizable theme has attractive, modern and flat design with stylish color scheme and fonts. The theme is build in WordPress customize and you can see live preview while customizing the theme.   Demo Link: https://www.gracethemes.com/demo/touring-zone-lite/
+
+Version: 1.0.0
+License: GNU General Public License version 2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: touring-zone-lite
+Tags:blog,two-columns,right-sidebar,custom-logo,full-width-template,custom-colors,custom-header,featured-images,editor-style,custom-background,custom-menu,threaded-comments,theme-options, translation-ready
+
+Touring Zone Lite WordPress Theme has been created by Grace Themes(gracethemes.com), 2018.
+Touring Zone Lite WordPress Theme is released under the terms of GNU GPL
+*/
+body{ background-color:#fff;margin:0; padding:0;line-height:24px;font-size:14px; color:#6f6f6f; font-family:'Roboto', sans-serif; -ms-word-wrap:break-word; word-wrap:break-word;}
+*{ margin:0; padding:0; outline:none;}
+h1,h2,h3,h4,h5,h6{ color:#484f5e; font-family:'Roboto', sans-serif; margin:0 0 20px; padding:0; line-height:1.1; font-weight:400; }
+h1{ font-size:30px;}
+h2{ font-size:28px;}
+h3{ font-size:24px;}
+h4{ font-size:20px;}
+h5{ font-size:18px;}
+h6{ font-size:14px;}
+
+#site-holder{ margin:0 auto;}
+.container{ width:1170px; margin:0 auto; position:relative;}
+.site-header{width:100%; z-index:9999; box-sizing:border-box; position: absolute; background-color:rgba(0,0,0,0.4); }
+.siteinner, .blog .site-header{ position:relative !important; background-color:rgba(0,0,0,0.9); }
+.site-header.siteinner .mainmenu{ margin:0;}
+
+.logo{ float:left; z-index:999; padding:25px 0;  color:#fff;}
+.logo h1{font-weight: 400; margin:0; line-height:36px; color:#fff; text-transform:uppercase;}
+.logo h1 span{color:#e99a00;}
+.logo a{ color:#fff;}
+.logo span{ color:#888;}
+.head-rightpart{ float:right; text-align:right; width:70%; padding:0; color:#fff; }
+
+/*header menu css*/
+.toggle{display: block;}
+.toggle a{width:100%; color:#ffffff; background:url(images/mobile-nav.png) no-repeat right center #3e3e3e; padding:10px 10px; margin-top:5px; font-size:16px; display:none; text-align:left;}
+.toggle a:hover{color:#ffffff !important;}
+/*main menu*/
+.mainmenu{background-color:#e99a00;  margin-bottom:-30px; position:relative; z-index:99999; }
+.header-menu{ padding:0; z-index:9999; }
+.header-menu ul {margin:0; padding:0; font-family:'Roboto', sans-serif; font-size:16px; font-weight:500; }
+.header-menu ul li{display:inline-block; position:relative; margin:0;}
+.header-menu ul li:last-child{border-right:none;}
+.header-menu ul li a{padding:43px 25px; display:block; text-align:center;color:#fff; }
+.header-menu ul li ul li{ display:block; position:relative; float:none; top:1px; border-bottom:1px #555 solid;}
+.header-menu ul li ul li a{ display:block; padding-top:7px; padding-bottom:7px; position:relative; top:1px; text-align:left; color:#fff;}
+.header-menu ul li ul{display:none; z-index:9999999; position:relative;  background-color:rgba(0,0,0,0.4);}
+.header-menu ul li:hover > ul{display:block; width:200px; position:absolute; left:0; text-align:left; }
+.header-menu ul li:hover ul li ul{display:none; position:relative;}
+.header-menu ul li:hover ul li:hover > ul{display:block; position:absolute; left:200px; top:0;}
+.header-menu ul li a:hover, 
+.header-menu ul li.current-menu-item a,
+.header-menu ul li.current-menu-parent a.parent,
+.header-menu ul li.current-menu-item ul.sub-menu li a:hover{ color:#fff;}
+.header-menu ul li.current-menu-item ul.sub-menu li a{ color: #fff;}
+ 
+/* Header Top
+---------------------------------------*/
+section#home_slider{ padding:0; }
+h2.sectiontitle{font-weight:600; font-size:40px; margin-bottom:50px; position:relative; text-align:center;}
+.header-title{ display:none;}
+.header-top{ color:#fff; line-height:36px;  background-color:rgba(0,0,0,0.2);}
+.header-top .left span{ padding-right:10px; color:#e99a00;}
+.header-top .left a{color:#fff;}
+.header-top .social-icons a{ margin-right:0; }
+.header-top i{ margin-right:5px;}
+.header-top .right{ text-align:right;}
+.right span.phno{ padding-right:10px; margin-right:5px;}
+
+.header_right .social-icons{ position:relative; display:inline-block; vertical-align:top; padding-left:20px;}
+.headerwidget{ display:inline-block;}
+.social-icons{ position:relative; display:inline-block; vertical-align:top; padding-left:10px;}
+.social-icons a{ width:20px; height:40px; line-height:40px; text-align:center;  vertical-align:middle; display:inline-block; padding:0 8px 0; transition:0.6s; -moz-transition:0.6s; -webkit-transition:0.6s; -o-transition:0.6s; font-size:16px; color:#888; }
+.social-icons br{ display:none;}
+
+/* = Services section css
+-------------------------------------------------------------- */
+.last_column{clear:right; margin-right:0 !important; }
+.learnmore{ background-color:#efc62c;  color:#fff ;display: inline-block; padding:10px 35px; border-radius:20px; text-transform:uppercase; }
+.learnmore:hover{ background-color:#333;color:#fff ;}
+
+/* = Page layout css
+-------------------------------------------------------------- */
+.site-maincontentarea{ width:780px; margin:0; padding:0; float:left;}
+.fullwidth{ width:100% !important; float:none  !important;}
+.fullwidth p{ margin-bottom:15px;}
+.boxlayout{ width:1210px; margin:0 auto; background-color:#fff; position:relative; box-shadow:0 -8px 8px #111;}
+.fulllayout{ width:100% !important;}
+.pagelayout_area{ padding:35px 0;}
+.pagelayout_area p{ margin-bottom:30px; line-height:24px;}
+.recent_articles{ margin-bottom:30px; }
+.recent_articles h3, h3.single-title{ margin-bottom:5px; font-size:20px;}
+.recent_articles h3 a{ color:#484f5e;}
+.recent_articles h3 a:hover{ color:#efc62c;}
+.recent_articles p{ margin-bottom:20px;}
+.blog-meta{ font-style:italic; margin-bottom:8px;}
+.post-date, .post-comment, .post-categories{ display:inline; color:#333;} 
+.single_title{ margin-bottom:5px;}
+.BlogPosts{ width:31.2%; float:left; margin:0 3% 0 0;}
+.BlogPosts img{ width:100%;}
+.BlogPosts h2{ margin:10px 0; font-size:22px; }
+.post-thumb{ width:auto; margin:5px 0 15px 0;}
+.post-thumb img{ width:auto;}
+
+/* = Four pagebox section
+-------------------------------------------------------------- */
+#section-wrap-1{ background-color:#eeeaea; z-index:9999; position:relative; padding:60px 0; text-align:center; }
+.servicestitle{ color:#2f2e2e; font-size:32px; margin:0 0 100px; text-align:center; font-weight:600;}
+.threebox{  width:23%; display:inline-block; margin:0 2% 0 0; padding:20px; position:relative; min-height:330px; box-sizing:border-box; text-align:center; box-sizing:border-box; background-color:#fff;}
+.threebox p{ margin-bottom:20px; line-height:20px; }
+.threebox h3{ font-size:16px; font-weight:600; color:#404040; margin:0 0 25px; text-transform:uppercase;}
+.threebox h3 a{  color:#404040;}
+a.ReadMore{ background-color:#333339; color:#fff ; padding:5px 15px; display:inline-block;}
+a.ReadMore:hover{ background-color:#e99a00; color:#fff; }
+.pagemore{ background-color:#404040; color:#fff ; padding:5px 15px; display:inline-block; text-transform:uppercase; border-radius:15px; }
+.threebox:hover .pagemore{ background-color:#e99a00; color:#fff; }
+.threebox:hover h3{ color:#ef2e2e;}	
+.threebox .thumbbx{ width:140px; height:140px; margin:-80px auto 0; overflow:hidden; border-radius:50%; border:4px solid #ddd;}
+.threebox .thumbbx img { height:auto; min-height:140px; width:100%;}
+.threebox:hover .thumbbx{ border-color:#e99a00;}
+.pagecontent{ padding:20px 0; position:relative; }
+
+/* = WelCome Page section css
+-------------------------------------- */
+#welcome-section{ background-color:#f1f1f1; padding:60px 0;}
+.welcome-thumb{ width:33%; float:right; margin:0 0 0 25px; box-sizing:border-box; position:relative; }
+.welcome-thumb img{ width:100%; margin-bottom:0; display:block; }
+.welcome-thumb a{ display:block;}
+.welcome-content{ box-sizing:border-box;}
+.welcome-content h3{font-size:42px; font-weight:600; position:relative; margin-bottom:30px; }
+.welcome-content p{ margin-bottom:35px; line-height:24px;}
+.welcome-content .learnmore{ margin-bottom:25px;}
+
+/* = sidebar
+------------------------------------------------ */
+#sidebar{ width:330px; float:right;  background-color:#f0e6d3; padding:15px;}
+aside.widget{ margin-bottom:30px; }
+aside.widget ul{ list-style:disc; }
+h3.widget-title{padding:15px 20px; margin:0 -25px 0 -15px; color:#fff; font-size:18px; font-weight:600; position:relative;}
+
+h3.widget-title::after {
+border-left: 10px solid #aa7205;
+border-bottom: 16px solid transparent;
+content: "";
+display: block;
+height: 0;
+right: -7px;
+position: absolute;
+bottom: -16px;
+width: 7px;
+}
+
+h3.widget-title::after {
+border-left-color: #aa7205;
+}
+
+
+#sidebar ul li{ list-style:inside none disc; padding:8px 0 8px 20px; list-style-position:inside; margin:0; border-bottom:1px solid #fff;}
+#sidebar ul li a{ padding:0 0 0 10px; color:#3b3b3b;  display:inline-block; }
+#sidebar ul li a:hover{ color:#34c6f6;}
+#sidebar ul li:last-child{ border:none;}
+
+#sidebar .search-form{ margin-bottom:20px;}
+#sidebar .search-form input.search-field{ background-color:#f0efef; width:80%; padding: 12px 15px 12px 15px; box-sizing:border-box; border:1px solid #ddd; }
+#sidebar .search-form input.search-submit{ background:url(images/search-icon.png) no-repeat center center #efc62c; padding: 12px 0 12px 0; font-size:0; width:20%; height:43px; float:right; border:0;}
+
+
+/* Buttons */
+.button{ background-color:#ff6565; border-bottom:4px solid #e44545; color:#fff; padding:8px 20px; display:inline-block; border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px; -o-border-radius:2px; -ms-border-radius:2px; }
+.button:hover{background-color:#34c6f6; border-color:#1898c2; color:#fff;}
+
+/* = Footer css
+--------------------------------------------- */
+.footer-copyright {  background-color:#333333; position:relative; padding:15px 0; color:#fff;}
+.footer-copyright a:hover{ color:#fff;}
+.copyright-txt { float:left;}
+.copyright-txt span{color:#efc62c;}
+.design-by { float:right;}

@@ -201,4 +201,74 @@
         $('.video-mo-01').css('opacity','0');
     });
 
+    /*[Output Instagram after custom HTML / Created by DANG SY HAO]
+    ===========================================================*/
+    setTimeout(function(){
+
+        //Hidden HTML load from Plugin .
+        $('#sb_instagram').attr('hidden' ,true);
+
+        var img_src =[] ;
+
+        $('.sbi-owl-stage .active .sbi_type_image .sbi_photo_wrap a.sbi_photo img').each(function(index){
+            img_src[index]= $(this).attr('src');
+        });
+
+        var num_like =[] ;
+
+        $('.sbi-owl-stage .active .sbi_type_image .sbi_info .sbi_meta .sbi_likes').each(function(index){
+            num_like[index]= $(this).text();
+        });
+
+        var content =[] ;
+
+        $('.sbi-owl-stage .active .sbi_type_image .sbi_photo_wrap .sbi_default .sbi_hover_top .sbi_caption').each(function(index){
+            content[index]= $(this).text();
+        });
+
+        var user =[] ;
+
+        $('.sbi-owl-stage .active .sbi_type_image .sbi_photo_wrap .sbi_default .sbi_hover_top .sbi_username a').each(function(index){
+            user[index]= $(this).text();
+        });
+
+        var href =[] ;
+
+        $('.sbi-owl-stage .active .sbi_type_image .sbi_photo_wrap a.sbi_imgLiquid_ready').each(function(index){
+            href[index]= $(this).attr('href');
+        });
+
+        //
+        var html =[] ;
+        $('.sbi-owl-stage .active').each(function(index){
+
+            html[index] = '<div class="block4 wrap-pic-w">' ;
+            html[index] += '<img src="'+img_src[index]+'" alt="IMG-INSTAGRAM">' ;
+            html[index] += '<a href="'+href[index]+'" class="block4-overlay sizefull ab-t-l trans-0-4">';
+            html[index] += '<span class="block4-overlay-heart s-text9 flex-m trans-0-4 p-l-40 p-t-25">';
+            html[index] += '<i class="icon_heart_alt fs-20 p-r-12" aria-hidden="true"></i>';
+            html[index] += '<span class="p-t-2">'+num_like[index]+'</span>';
+            html[index] += '</span>';
+            html[index] += '<div class="block4-overlay-txt trans-0-4 p-l-40 p-r-25 p-b-30">';
+            html[index] += '<p class="s-text10 m-b-15 h-size1 of-hidden">'+content[index];
+            html[index] += '</p>';
+            html[index] += ' <span class="s-text9">';
+            html[index] += 'Photo by @'+user[index];
+            html[index] += '</span>';
+            html[index] += '</div>';
+            html[index] += ' </a>';
+            html[index] += '</div>';
+
+        });
+
+        //Out put Html on Site
+        var index = html.length ;
+        for(var i=0 ; i< index ; i++){
+
+            $('#follow-instagram').append(html[i]) ;
+
+        }
+
+    },2000);
+
 })(jQuery);

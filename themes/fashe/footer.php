@@ -36,8 +36,9 @@
 <?php get_template_part('template-parts/footer/modal_video')?>
 
 
-<!--===============================================================================================-->
-<script type="text/javascript" src="<?= ASSETS_PATH;?>vendor/jquery/jquery-3.2.1.min.js"></script>
+
+
+
 <!--===============================================================================================-->
 <script type="text/javascript" src="<?= ASSETS_PATH;?>vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
@@ -136,9 +137,9 @@
 <!--===============================================================================================-->
 
 <?php get_footer( 'shop' );?>
-
 <!--Jquery footer-->
 <?php wp_footer();?>
+
 
 
 </body>

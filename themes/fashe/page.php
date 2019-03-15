@@ -38,6 +38,7 @@ get_header(); ?>
             </section>
     <?php elseif( is_checkout() || is_user_logged_in() || is_account_page() ):?>
 
+
             <section class="cart bgwhite p-t-70 p-b-100">
                 <div class="container">
                 <!--My Html-->
@@ -51,9 +52,10 @@ get_header(); ?>
     <?php else: ?>
 
         <?php
+
             while (have_posts()) {
                 the_post();
-                the_content();
+               the_content();
             }
         ?>
 

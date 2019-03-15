@@ -172,4 +172,4 @@ defined( 'ABSPATH' ) || exit;
     <!-- End Container-->
     </div>
 
-</section>
+</div>

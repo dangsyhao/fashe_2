@@ -26,7 +26,7 @@ do_action( 'woocommerce_before_shipping_calculator' ); ?>
     <?php if ( apply_filters( 'woocommerce_shipping_calculator_enable_country', true ) ) : ?>
 
         <div class="rs2-select2 rs3-select2 rs4-select2 bo4 of-hidden w-size21 m-t-8 m-b-12">
-				<select name="calc_shipping_country"  class="selection-2 select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+				<select name="calc_shipping_country"  class="selection-2 select2-hidden-accessible" >
 					<option value=""><?php esc_html_e( 'Select a country&hellip;', 'woocommerce' ); ?></option>
 					<?php
 					foreach ( WC()->countries->get_shipping_countries() as $key => $value ) {
@@ -50,8 +50,8 @@ do_action( 'woocommerce_before_shipping_calculator' ); ?>
 					<?php
 				} elseif ( is_array( $states ) ) {
 					?>
-					<span>
-						<select name="calc_shipping_state" class="state_select" id="calc_shipping_state" placeholder="<?php esc_attr_e( 'State / County', 'woocommerce' ); ?>">
+					<div class="rs2-select2 rs3-select2 rs4-select2 bo4 of-hidden w-size21 m-t-8 m-b-12">
+						<select name="calc_shipping_state" class="selection-2 select2-hidden-accessible" id="calc_shipping_state" placeholder="<?php esc_attr_e( 'State / County', 'woocommerce' ); ?>">
 							<option value=""><?php esc_html_e( 'Select a state&hellip;', 'woocommerce' ); ?></option>
 							<?php
 							foreach ( $states as $ckey => $cvalue ) {
@@ -59,7 +59,7 @@ do_action( 'woocommerce_before_shipping_calculator' ); ?>
 							}
 							?>
 						</select>
-					</span>
+                    </div>
 					<?php
 				} else {
 					?>
@@ -71,8 +71,9 @@ do_action( 'woocommerce_before_shipping_calculator' ); ?>
 				?>
 		<?php endif; ?>
 
+<!--        Hidden-->
 		<?php if ( apply_filters( 'woocommerce_shipping_calculator_enable_city', true ) ) : ?>
-            <div class="size13 bo4 m-b-12">
+            <div class="size13 bo4 m-b-12" hidden >
 				<input class="sizefull s-text7 p-l-15 p-r-15" type="text" value="<?php echo esc_attr( WC()->customer->get_shipping_city() ); ?>" placeholder="<?php esc_attr_e( 'City', 'woocommerce' ); ?>" name="calc_shipping_city" id="calc_shipping_city" />
 			</div>
 		<?php endif; ?>
