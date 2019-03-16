@@ -35,10 +35,6 @@
 <!-- Modal Video 01-->
 <?php get_template_part('template-parts/footer/modal_video')?>
 
-
-
-
-
 <!--===============================================================================================-->
 <script type="text/javascript" src="<?= ASSETS_PATH;?>vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->

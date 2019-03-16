@@ -26,7 +26,6 @@
                     post_type    :  post_type
                 }),
                 beforeSend: function() {
-                    //$( '.loading_ajaxp' ).css( 'display','block' );
 
                 },
                 success: function( data, textStatus, jqXHR ){

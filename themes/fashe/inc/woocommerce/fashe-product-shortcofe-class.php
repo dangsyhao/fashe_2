@@ -742,15 +742,12 @@ class fashe_product_shortcode_class
         if($this->attributes['paginate'] === false){
              return false ;
         }
-
         $products = $this->get_query_results();
         $total_pages= $products->total_pages;
         $paged=$this->attributes['page'];
-
         $paginate_template = fashe_paginate_ajax(array('total_pages'=>$total_pages,'paged'=>$paged));
 
         return $paginate_template;
-
     }
 
     /**

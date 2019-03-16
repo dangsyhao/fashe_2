@@ -23,9 +23,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
     <div class="flex-sb-m flex-w p-b-35">
-        <div class="flex-w">
-            <!-- Price -->
-<!--            <form  class="woocommerce-ordering" method="get" >-->
+        <div class="flex-w filter-vertical-shoppage">
+
                 <div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
                     <select id="orderby_filters" class="selection-2 select2-hidden-accessible orderby_filters" name="orderby" tabindex="-1" aria-hidden="true">
                         <?php foreach ( $catalog_orderby_options as $id => $name ) : ?>
@@ -33,9 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                         <?php endforeach; ?>
                     </select>
                 </div>
-<!--            </form>-->
-            <!-- Price -->
-<!--            <form  class="woocommerce-ordering" method="get" >-->
+
                 <div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
                     <select id="orderby_price" class="selection-2 select2-hidden-accessible" name="orderby_price" tabindex="-1" aria-hidden="true">
 
@@ -78,7 +75,9 @@ if ( ! defined( 'ABSPATH' ) ) {
                     </select>
                 </div>
 
-<!--            </form>-->
+                <div class="reset-btn-in-shoppage">
+                    <button type="button" class="btn btn-secondary reset-filter-shoppage-button">Reset</button>
+                </div>
 
         </div>
 

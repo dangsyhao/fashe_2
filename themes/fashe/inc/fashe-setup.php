@@ -182,11 +182,8 @@ function LoadProductPagination_init() {
     $total_product = $get_attrs->total;
 
     echo '<div class="row product_results" data-total-results="'.$total_product.'">';
-
     echo $shortcode->fashe_get_content();
-
     echo '</div>';
-
     echo $shortcode ->fashe_get_shop_paginate();
 
     exit();

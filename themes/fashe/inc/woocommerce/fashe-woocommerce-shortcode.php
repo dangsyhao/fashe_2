@@ -99,11 +99,9 @@ function fashe_woocommerce_short_code_shop($atts) {
         'paginate'      =>true
     ), $atts);
 
-    $query_cat_name = isset($_GET['query_cat_name']) ? $_GET['query_cat_name'] : '';
+    $query_cat_name = isset($_GET['query_cat_name']) ? wc_clean( wp_unslash( $_GET['query_cat_name'])) : '';
 ?>
 
-
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script type="text/javascript">
 
         $(document).ready(function() {
@@ -149,25 +147,34 @@ function fashe_woocommerce_short_code_shop($atts) {
                     beforeSend: function () {
                     },
                     success: function (data, textStatus, jqXHR) {
-
                         $('#load_ajax_shop_product').html(data);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.log('The following error occured: ' + textStatus, errorThrown);
                     },
                     complete: function (jqXHR, textStatus) {
-
                         //Show total results after Loaded ajax product .
                         var total_results = $('div.product_results').attr('data-total-results');
                         $('span.show_all_results').html(total_results);
-                    }
+                        // if no Product loaded .
+                        if(parseInt(total_results) === 0) {
+                            var results_html = '<div class ="row">';
+                            results_html +='<span > Product not found ! </span>' ;
+                            results_html += '</div>' ;
 
+                            $('#load_ajax_shop_product').html(results_html) ;
+                        }
+                    }
                 });
 
             }//End function
 
             //Load Page Default .
             load_products_ajax(page_default = true);
+            // Load Page Default if Click Reset Button .
+            $('button.reset-filter-shoppage-button').click(function(){
+                window.location.href = "<?php echo get_bloginfo('url').'/shop' ;?>" ;
+            });
 
             //Load Product filters by orderby box
             $('#orderby_filters').change(function () {
@@ -204,7 +211,7 @@ function fashe_woocommerce_short_code_shop($atts) {
                 load_products_ajax(page_default = false);
             });
 
-            //Load page with Pagination
+            //Load page with Filter by color
             $("#filter-product-color").on("click", 'input.checkbox-color-filter', function () {
 
                 var box = $(this);
@@ -217,12 +224,10 @@ function fashe_woocommerce_short_code_shop($atts) {
                 }
 
                 query_product_color = $( "input.checkbox-color-filter:checked" ).val();
-
                 load_products_ajax(page_default = false);
-
             });
 
-            //Load page with Pagination
+            //Load page with Filter by Price (noUI Style)
             $('#price-noui-filter-button').on('click', function () {
 
                 var price_lower = $('#value-lower').text();
@@ -236,16 +241,34 @@ function fashe_woocommerce_short_code_shop($atts) {
                 $('span.select2-selection__rendered').text('Price');
             });
 
-            //Load page with Pagination
-            $('#get_product_cat_ajax li').on('click', function () {
-
-                filter_by_cat = $(this).attr('value');
-
-                load_products_ajax(page_default = false);
-
+            //Load page with Fillter by Category .
+            $('#get_product_cat_ajax li.p-t-4').each(function () {
+                $(this).click(function () {
+                    //If isset category query by $_GET ..then Clear it .
+                    if(typeof query_cat_name !== "undefined" && query_cat_name !== '' ){
+                        var uri = window.location.toString();
+                        if (uri.indexOf("?") > 0) {
+                            var clean_uri = uri.substring(0, uri.indexOf("?"));
+                            window.history.replaceState({}, document.title, clean_uri);
+                        }
+                        query_cat_name = '' ;
+                    }
+                    //Filter and Load Product .
+                    filter_by_cat = $(this).attr('value');
+                    load_products_ajax(page_default = false);
+                    // Set Current Style for Product .
+                    $('#get_product_cat_ajax li.p-t-4 a').removeClass('active1');
+                    $(this).children().addClass('active1');
+                });
             });
 
-        })//End javascript
+            // Set Style for Category if call by $_GET .
+            if(typeof query_cat_name !== "undefined" && query_cat_name !== '' ){
+                $('#get_product_cat_ajax li.p-t-4 a').removeClass('active1');
+                $('#get_product_cat_ajax li[value="'+query_cat_name+'"]').children().addClass('active1');
+            }
+
+        })//End Jquery .
 
     </script>
 

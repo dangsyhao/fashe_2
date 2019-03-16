@@ -11,9 +11,6 @@ div.container div.woocommerce {
     border-radius: 4px;
 }
 
-
-
-
 /*
  * My Account Custom CSS
  */
@@ -224,3 +221,14 @@ div.woocommerce-billing-fields h3{
 ** Cart Page
  */
 
+
+
+
+/**
+    SHOP PAGE .
+ */
+
+div.reset-btn-in-shoppage button.reset-filter-shoppage-button {
+    margin-top:0.75em ;
+    margin-left: 2em;
+}

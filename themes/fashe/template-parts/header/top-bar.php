@@ -7,21 +7,6 @@
         <a href="#" class="topbar-social-item fa fa-youtube-play"></a>
     </div>
 
-    <span class="topbar-child1">
-					Free shipping for standard order over $100
-				</span>
-
-    <div class="topbar-child2">
-					<span class="topbar-email">
-						fashe@example.com
-					</span>
-
-        <div class="topbar-language rs1-select2">
-            <select class="selection-1" name="time">
-                <option>USD</option>
-                <option>EUR</option>
-            </select>
-        </div>
-    </div>
+    <span class="topbar-child1">Free shipping for standard order over $100</span>
 
 </div>

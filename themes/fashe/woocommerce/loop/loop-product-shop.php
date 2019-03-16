@@ -1,9 +1,26 @@
 
-<?php global $product;?>
+<?php
+
+global $product;
+$product_label ='';
+
+if($product->is_on_sale()){
+    $product_label ='block2-labelsale';
+}else{
+    //If the product starts selling within 15 days, it is a new product .
+    $newness_days = 15;
+    $created = strtotime( $product->get_date_created() );
+
+    if ( ( time() - ( 60 * 60 * 24 * $newness_days ) ) < $created ) {
+        $product_label ='block2-labelnew';
+    }
+}
+
+?>
 
 <div class="col-sm-12 col-md-6 col-lg-4 p-b-50 ">
     <div class="block2">
-        <div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+        <div class="block2-img wrap-pic-w of-hidden pos-relative <?php echo $product_label ;?>">
             <?= woocommerce_get_product_thumbnail();?>
             <div class="block2-overlay trans-0-4">
                 <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4" tabindex="0">

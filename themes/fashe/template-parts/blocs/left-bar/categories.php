@@ -8,20 +8,20 @@
 
 <ul class="p-b-54" id ="get_product_cat_ajax">
 
-    <li class="p-t-4" value = "">
-        <a href="#" class="s-text13" >
-            All
-        </a>
-    </li>
+        <li class="p-t-4" value = "">
+            <a href="#" class="s-text13 active1" >
+                All
+            </a>
+        </li>
 
-<?php foreach ($product_cats as $product_cat ) :?>
-
-    <li class="p-t-4" value="<?php echo $product_cat->name ;?>">
-        <a href="#" class="s-text13">
-            <?php echo $product_cat->name ;?>
-        </a>
-    </li>
-
+    <?php foreach ($product_cats as $product_cat ) :?>
+        <?php if($product_cat->name !== 'Uncategorized'): ?>
+        <li class="p-t-4" value="<?php echo $product_cat->name ;?>">
+            <a href="#" class="s-text13">
+                <?php echo $product_cat->name ;?>
+            </a>
+        </li>
+        <?php endif ;?>
     <?php endforeach; ?>
 
 </ul>
