@@ -2,19 +2,18 @@
     <div class="rightbar">
 
 <!--        Seach-->
-        <?php fashe_get_template_part('blocs/right-bar/seach');?>
+        <?php get_template_part('template-parts/blocs/right-bar/seach');?>
 
         <!--Categories-->
-        <?php fashe_get_template_part('blocs/right-bar/categories');?>
+        <?php get_template_part('template-parts/blocs/right-bar/categories');?>
 
 <!--        Featured Products-->
-        <?php fashe_get_template_part('blocs/right-bar/featured-product');?>
+        <?php get_template_part('template-parts/blocs/right-bar/featured-product');?>
 
         <!--        Archive-->
-        <?php fashe_get_template_part('blocs/right-bar/archive');?>
+        <?php get_template_part('template-parts/blocs/right-bar/archive');?>
 
         <!--        Tags-->
-        <?php fashe_get_template_part('blocs/right-bar/tags');?>
-
+        <?php get_template_part('template-parts/blocs/right-bar/tags');?>
     </div>
 </div>

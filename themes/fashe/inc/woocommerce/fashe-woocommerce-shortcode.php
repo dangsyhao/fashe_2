@@ -26,26 +26,14 @@ function fashe_product_categories_loop_home( $atts ) {
         $atts['limit'] = $atts['number'];
     }
 
-    $atts = shortcode_atts( array(
+    // Get terms and workaround WP bug with parents/pad counts.
+    $args = array(
         'limit'      => '-1',
-        'orderby'    => 'term_id',
+        'orderby'    => 'count',
         'order'      => 'DESC',
         'hide_empty' => 1,
         'parent'     => '',
         'ids'        => '',
-    ), $atts, 'product_categories' );
-
-    $ids        = array_filter( array_map( 'trim', explode( ',', $atts['ids'] ) ) );
-    $hide_empty = ( true === $atts['hide_empty'] || 'true' === $atts['hide_empty'] || 1 === $atts['hide_empty'] || '1' === $atts['hide_empty'] ) ? 1 : 0;
-
-    // Get terms and workaround WP bug with parents/pad counts.
-    $args = array(
-        'orderby'    => $atts['orderby'],
-        'order'      => $atts['order'],
-        'hide_empty' => $hide_empty,
-        'include'    => $ids,
-        'pad_counts' => true,
-        'child_of'   => $atts['parent'],
     );
 
     $product_categories = get_terms( 'product_cat', $args );
@@ -56,27 +44,17 @@ function fashe_product_categories_loop_home( $atts ) {
         ) );
     }
 
-    if ( $hide_empty ) {
-        foreach ( $product_categories as $key => $category ) {
-            if ( 0 === $category->count ) {
-                unset( $product_categories[ $key ] );
-            }
-        }
-    }
-
     $atts['limit'] = '-1' === $atts['limit'] ? null : intval( $atts['limit'] );
     if ( $atts['limit'] ) {
         $product_categories = array_slice( $product_categories, 0, $atts['limit'] );
     }
-
-    $columns = absint( $atts['columns'] );
 
     ob_start();
 
     if ( $product_categories ) {
         woocommerce_product_loop_start();
 
-        wc_get_template( 'content-product_cat.php', array(
+        wc_get_template( 'template-parts/blocs/sub-category.php', array(
             'category' => $product_categories,
         ) );
 
@@ -102,9 +80,9 @@ function fashe_woocommerce_short_code_shop($atts) {
     $query_cat_name = isset($_GET['query_cat_name']) ? wc_clean( wp_unslash( $_GET['query_cat_name'])) : '';
 ?>
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
-        $(document).ready(function() {
+$(document).ready(function() {
 
             var paged_default = "<?php echo $atts['page']?>";
             var posts_per_page = "<?php echo $atts['per_page'];?>";

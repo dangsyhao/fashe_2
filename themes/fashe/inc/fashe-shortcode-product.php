@@ -18,8 +18,6 @@ function fashe_featured_products_right_bar( $atts )
         'cat_operator' => 'IN',
     ), (array)$atts);
 
-//$atts['visibility'] = 'featured';
-
     $shortcode = new fashe_product_shortcode_class($atts, 'featured_products');
     $products = $shortcode->fashe_get_query_results();
 

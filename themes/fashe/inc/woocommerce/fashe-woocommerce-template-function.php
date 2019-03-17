@@ -195,12 +195,12 @@ function fashe_woocommerce_external_add_to_cart() {
         return;
     }
 
-    wc_get_template( 'single-product/add-to-cart/external.php', array(
-        'product_url' => $product->add_to_cart_url(),
-        'button_text' => $product->single_add_to_cart_text(),
-    ) );
-}
 
+wc_get_template( 'single-product/add-to-cart/external.php', array(
+    'product_url' => $product->add_to_cart_url(),
+    'button_text' => $product->single_add_to_cart_text(),
+) );
+}
 /**
  * Output placeholders for the single variation.
  */
@@ -296,11 +296,6 @@ function fashe_wc_get_gallery_image_html( $attachment_id, $main_image = false ) 
     $full_src          = wp_get_attachment_image_src( $attachment_id, $full_size );
     $image             = wp_get_attachment_image( $attachment_id, $image_size, false, array(
         'title'                   => get_post_field( 'post_title', $attachment_id ),
-       // 'data-caption'            => get_post_field( 'post_excerpt', $attachment_id ),
-      //  'data-src'                => $full_src[0],
-      //  'data-large_image'        => $full_src[0],
-      //  'data-large_image_width'  => $full_src[1],
-      //  'data-large_image_height' => $full_src[2],
         'class'                   => $main_image ? 'wc-product-feature-img' : '',
     ) );
 

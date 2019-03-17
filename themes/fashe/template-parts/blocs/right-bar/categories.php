@@ -4,8 +4,9 @@
 </h4>
 
 <?php
-$product_categories = get_terms( 'product_cat' );
+$product_categories = get_terms( 'category' );
 ?>
+
 <ul>
     <?php foreach ($product_categories as $category):?>
     <li class="p-t-6 p-b-8 bo6">
@@ -13,7 +14,6 @@ $product_categories = get_terms( 'product_cat' );
             <?= $category->name;?>
         </a>
     </li>
-
     <?php endforeach;?>
 
 </ul>
