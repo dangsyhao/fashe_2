@@ -22,6 +22,8 @@ function fashe_setup() {
      */
     add_theme_support( 'post-thumbnails' );
     //
+    add_image_size( 'Product-image-sale-special', 570, 427, true );
+    //
     add_image_size( 'fashe-thumbnail-avatar', 100, 100, true );
     //
     add_image_size( 'fashe-loop-category-long-thumbnail',370,479,true );

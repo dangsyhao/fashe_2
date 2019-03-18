@@ -15,7 +15,7 @@ get_header(); ?>
 <?php get_template_part('template-parts/page/home-page/new-product')?>
 
     <!-- Banner2 -->
-<?php get_template_part('template-parts/page/home-page/banner2')?>
+<?php get_template_part('template-parts/page/home-page/collection-sale/collection-sale') ;?>
 
     <!-- Blog -->
 <?php get_template_part('template-parts/page/home-page/blog')?>

@@ -38,8 +38,8 @@
       updateClock();
       var timeinterval = setInterval(updateClock, 1000);
     }
-
-    var deadline = new Date(Date.parse(new Date()) + 69 * 24 * 60 * 60 * 1000 + 13 * 60 * 60 * 1000); 
+    var day_for_deadtime = $('#special_discount_products').attr('data-deadtime-sale');
+    var deadline = new Date(Date.parse(new Date()) + day_for_deadtime * 24 * 60 * 60 * 1000 + 13 * 60 * 60 * 1000);
     initializeClock('clockdiv', deadline);
 
 })(jQuery);
