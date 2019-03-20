@@ -99,7 +99,6 @@ add_action('fashe_single_product_right_section','fashe_single_product_right_sect
 
 function fashe_featured_right_bar()
 {
-
     wc_get_template('template-parts/single_product/single_product_right.php');
 }
 
@@ -194,13 +193,8 @@ function fashe_paginate_ajax($args)
 
         return '';
     }
-
-    var_dump($args_merge['total_pages']);
-
     ob_start();
-
     ?>
-
     <div class="pagination flex-m flex-w p-t-26" id ="paginative_product_ajax">
         <?php for($i=1;$i<=$args_merge['total_pages'];$i++):?>
             <a  class="item-pagination flex-c-m trans-0-4 <?= ($args_merge['paged']==$i)?'active-pagination':'';?>" href="#" data-page="<?= $i;?>"><?= $i;?></a>

@@ -3,6 +3,21 @@
 * Woocommerce Pages
  */
 
+div.woocommerce p.cart-empty{
+
+    box-sizing: border-box;
+    border-style: solid ;
+    border-color: #bb77ae;
+    border-width: 0.2em;
+    text-align: center;
+    font-size: 22px;
+    align-content: center;
+    height: 150px;
+    background: whitesmoke;
+    margin: 10px;
+
+}
+
 div.container div.woocommerce {
     border: solid;
     padding: 2rem;
@@ -156,20 +171,6 @@ header.woocommerce-Address-title {
     width: 400% ;
     min-height: 10em;
 }
-
-.select2-container--default .select2-selection--single .select2-selection__arrow {
-    top: 50%;
-    transform: none;
-    right: 0px;
-    transform: none;
-    lay: -webkit-flex;
-    display: none;
-    display: none;
-    display: none;
-    align-items: center;
-    justify-content: flex-end;
-}
-
 
 form.woocommerce-checkout div.row {
 

@@ -1,4 +1,3 @@
-
 <div class="p-b-40">
 
     <div class="blog-detail-img wrap-pic-w">

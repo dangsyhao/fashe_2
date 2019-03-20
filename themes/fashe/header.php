@@ -47,8 +47,6 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="<?= ASSETS_PATH;?>css/woocommerce_css/woocommerce.css">
 
-    <?php get_header( 'shop' );?>
-
     <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -79,3 +77,7 @@
     <?php get_template_part('template-parts/header_mobile/menu_mobile')?>
 
 </header>
+
+    <!--Bread-Crumb-->
+<?php if(is_single()) get_template_part('template-parts/header/bread-crumb'); ?>
+

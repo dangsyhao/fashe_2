@@ -2,7 +2,7 @@
     <div class="wrap-slick1">
         <div class="slick1">
 
-            <?php $banner_items=apply_filters('fashe_main_banner','fashe_main_banner');?>
+            <?php $banner_items=get_field('main_banners','option');?>
 
             <?php foreach ($banner_items as $banner_item):?>
             <div class="item-slick1 item1-slick1" style="background-image: url(<?= $banner_item['banner_images']?>);">
@@ -15,7 +15,7 @@
                     </h2>
                     <div class="wrap-btn-slide1 w-size1 animated visible-false" data-appear="zoomIn">
                         <!-- Button -->
-                        <a href="<?= get_permalink( woocommerce_get_page_id( 'shop' ) );?>" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
+                        <a href="<?=$banner_item['link_button'];?>" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
                             Shop Now
                         </a>
                     </div>

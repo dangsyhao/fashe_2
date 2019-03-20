@@ -3,29 +3,14 @@
         Links
     </h4>
 
-    <ul>
-        <li class="p-b-9">
-            <a href="#" class="s-text7">
-                Search
-            </a>
-        </li>
+    <?php while (have_rows('links','option')): the_row() ;?>
+        <ul>
+            <li class="p-b-9">
+                <a href="<?= get_sub_field('page_link') ;?>" class="s-text7">
+                    <?= get_sub_field('page_label') ?>
+                </a>
+            </li>
 
-        <li class="p-b-9">
-            <a href="#" class="s-text7">
-                About Us
-            </a>
-        </li>
-
-        <li class="p-b-9">
-            <a href="#" class="s-text7">
-                Contact Us
-            </a>
-        </li>
-
-        <li class="p-b-9">
-            <a href="#" class="s-text7">
-                Returns
-            </a>
-        </li>
-    </ul>
+        </ul>
+    <?php endwhile ;?>
 </div>

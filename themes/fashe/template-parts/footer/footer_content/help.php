@@ -2,30 +2,15 @@
     <h4 class="s-text12 p-b-30">
         Help
     </h4>
-
+<?php while (have_rows('help','option')): the_row() ;?>
     <ul>
         <li class="p-b-9">
-            <a href="#" class="s-text7">
-                Track Order
+            <a href="<?= get_sub_field('page_link') ;?>" class="s-text7">
+                <?= get_sub_field('page_label') ?>
             </a>
         </li>
 
-        <li class="p-b-9">
-            <a href="#" class="s-text7">
-                Returns
-            </a>
-        </li>
-
-        <li class="p-b-9">
-            <a href="#" class="s-text7">
-                Shipping
-            </a>
-        </li>
-
-        <li class="p-b-9">
-            <a href="#" class="s-text7">
-                FAQs
-            </a>
-        </li>
     </ul>
+<?php endwhile ;?>
+
 </div>

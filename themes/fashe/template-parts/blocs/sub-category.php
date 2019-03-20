@@ -13,9 +13,9 @@
     $total_section_limit = ($total_section > $total_section_max) ? $total_section_max : $total_section ;
 ?>
 
-<?php for($section = 0;$section <= $total_section_limit;$section++):?>
+<?php for($section = 1;$section <= $total_section_limit;$section++):?>
     <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
-        <?php $item_start=($section)*$cat_per_section ?>
+        <?php $item_start=($section - 1)*$cat_per_section ?>
         <?php for($j=$item_start;$j<$item_start+$cat_per_section;$j++): ?>
             <?php if($category[$j]->term_id):?>
                 <!-- Blog -->
@@ -34,6 +34,7 @@
             <?php else:?>
             <!--Sing Up-->
                 <?php if(!is_user_logged_in()): ?>
+
                     <div class="block2 wrap-pic-w pos-relative m-b-30">
                         <img src="<?= ASSETS_PATH;?>images/icons/bg-01.jpg" alt="IMG">
                         <div class="block2-content sizefull ab-t-l flex-col-c-m">
@@ -51,6 +52,7 @@
                             </div>
                         </div>
                     </div>
+
                 <?php else:?>
                     <div class="block2 wrap-pic-w pos-relative m-b-30">
                         <img src="<?= ASSETS_PATH;?>images/icons/bg-01.jpg" alt="IMG">
@@ -67,9 +69,12 @@
                             </div>
                         </div>
                     </div>
+
                 <?php endif ;?>
                 <?php break;?>
+
             <?php endif;?>
+
         <?php endfor;?>
     </div>
 <?php endfor;?>

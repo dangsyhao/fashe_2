@@ -95,7 +95,6 @@ function fashe_woocommerce_orderby(){
  *
  */
 
-
 function fashe_woocommerce_add_to_cart_single_product()
 {
     wc_get_template('single-product/add-to-cart/simple.php');

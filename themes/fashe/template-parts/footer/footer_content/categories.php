@@ -3,29 +3,17 @@
         Categories
     </h4>
 
+    <?php
+    $product_categories = get_terms( 'category' );
+    ?>
     <ul>
-        <li class="p-b-9">
-            <a href="#" class="s-text7">
-                Men
-            </a>
-        </li>
+        <?php foreach ($product_categories as $category):?>
+            <li class="p-b-9">
+                <a href="<?= get_category_link($category->term_id)?>" class="s-text7">
+                    <?= $category->name;?>
+                </a>
+            </li>
+        <?php endforeach;?>
 
-        <li class="p-b-9">
-            <a href="#" class="s-text7">
-                Women
-            </a>
-        </li>
-
-        <li class="p-b-9">
-            <a href="#" class="s-text7">
-                Dresses
-            </a>
-        </li>
-
-        <li class="p-b-9">
-            <a href="#" class="s-text7">
-                Sunglasses
-            </a>
-        </li>
     </ul>
 </div>

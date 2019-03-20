@@ -26,6 +26,5 @@ get_header(); ?>
     <!-- Shipping -->
 <?php get_template_part('template-parts/page/home-page/shipping')?>
 
-
 <?php
 get_footer();

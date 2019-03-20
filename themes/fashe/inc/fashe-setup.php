@@ -24,6 +24,8 @@ function fashe_setup() {
     //
     add_image_size( 'Product-image-sale-special', 570, 427, true );
     //
+    add_image_size( 'Post-image-thumnail-beauty-collection', 570, 427, true );
+    //
     add_image_size( 'fashe-thumbnail-avatar', 100, 100, true );
     //
     add_image_size( 'fashe-loop-category-long-thumbnail',370,479,true );
@@ -31,6 +33,8 @@ function fashe_setup() {
     add_image_size( 'fashe-loop-category-short-thumbnail',370,339,true );
     //
     add_image_size( 'fashe-main-banners',1903,570,true );
+    //s
+    add_image_size( 'fashe-title-banner',1920,239,true );
     //
     add_image_size( 'fashe-post-thumbnail-front',370,277,true );
     //
@@ -42,8 +46,13 @@ function fashe_setup() {
     //
     add_image_size( 'fashe-single-product-thumbnails',90,120,false );
     //
-    add_image_size( 'fashe-mini-cart-thumbnails',80,80,true );
-
+    add_image_size( 'fashe-mini-cart-thumbnaisls',80,80,true );
+    //
+    add_image_size( 'fashe-logo-header',120,27,true );
+    //
+    add_image_size( 'fashe-loop-products',270,360,true );
+//
+    add_image_size( 'fashe-payment-logo',34,22,true );
 
     // This theme uses wp_nav_menu() in two locations.
     register_nav_menus( array(
@@ -203,5 +212,28 @@ function devvn_useAjaxPagination() {
         'admin_ajax' => admin_url( 'admin-ajax.php' )
     );
     wp_localize_script( 'devvn-ajax', 'svl_array_ajaxp', $php_array );
+
+}
+
+/**
+ * Custom Feild Setting .
+ */
+
+if( function_exists('acf_add_options_page') ) {
+
+    acf_add_options_page(array(
+        'page_title' 	=> 'Fashe Template Option',
+        'menu_title'	=> 'Fashe Template Option',
+        'menu_slug' 	=> 'fashe-option',
+        'capability'	=> 'edit_posts',
+        'redirect'		=> false
+    ));
+
+    acf_add_options_sub_page(array(
+        'page_title'    => __('Blocks', 'fashe'),
+        'menu_title'    => __('Blocks', 'fashe'),
+        'parent_slug'   => 'fashe-theme-settings',
+    ));
+
 
 }

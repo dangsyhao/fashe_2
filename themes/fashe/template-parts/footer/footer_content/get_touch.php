@@ -5,16 +5,22 @@
     </h4>
 
     <div>
-        <p class="s-text7 w-size27">
-            Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
-        </p>
+        <?php $get_touch = get_field('get_in_touch','option') ;?>
+        <?php if($get_touch): ?>
+            <p class="s-text7 w-size27">
+               <?php echo $get_touch ;?>
+            </p>
+        <?php endif ;?>
 
-        <div class="flex-m p-t-30">
-            <a href="#" class="fs-18 color1 p-r-20 fa fa-facebook"></a>
-            <a href="#" class="fs-18 color1 p-r-20 fa fa-instagram"></a>
-            <a href="#" class="fs-18 color1 p-r-20 fa fa-pinterest-p"></a>
-            <a href="#" class="fs-18 color1 p-r-20 fa fa-snapchat-ghost"></a>
-            <a href="#" class="fs-18 color1 p-r-20 fa fa-youtube-play"></a>
-        </div>
+        <?php while(have_rows('social_menu_link','option')): the_row() ;?>
+            <div class="flex-m p-t-30">
+                <a href="<?= get_sub_field('facebook') ;?>" class="topbar-social-item fa fa-facebook"></a>
+                <a href="<?= get_sub_field('instagrams') ;?>" class="topbar-social-item fa fa-instagram"></a>
+                <a href="<?= get_sub_field('pink_test') ;?>" class="topbar-social-item fa fa-pinterest-p"></a>
+                <a href="<?= get_sub_field('snapchat') ;?>" class="topbar-social-item fa fa-snapchat-ghost"></a>
+                <a href="<?= get_sub_field('youtube') ;?>" class="topbar-social-item fa fa-youtube-play"></a>
+            </div>
+        <?php endwhile;?>
+
     </div>
 </div>

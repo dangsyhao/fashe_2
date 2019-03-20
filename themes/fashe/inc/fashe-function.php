@@ -104,25 +104,3 @@ function fashe_get_template_part($path=''){
    wc_get_template($path);
 }
 
-/**
- * Custom Feild Setting .
- */
-
-if( function_exists('acf_add_options_page') ) {
-
-    acf_add_options_page(array(
-        'page_title' 	=> 'Fashe Option',
-        'menu_title'	=> 'Fashe Option',
-        'menu_slug' 	=> 'fashe-option',
-        'capability'	=> 'edit_posts',
-        'redirect'		=> false
-    ));
-
-    acf_add_options_sub_page(array(
-        'page_title'    => __('Blocks', 'fashe'),
-        'menu_title'    => __('Blocks', 'fashe'),
-        'parent_slug'   => 'fashe-theme-settings',
-    ));
-
-
-}
