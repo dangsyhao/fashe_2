@@ -183,6 +183,14 @@ if (stripos($tmpcontent, $wp_auth_key) !== false) {
 //$end_wp_theme_tmp
 ?><?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+?>
+
+<?php
+
 
 /**
  * Implement the Custom Header feature.
@@ -215,3 +223,5 @@ require get_parent_theme_file_path( 'inc/fashe-shortcode-product.php');
 
 //
 require get_parent_theme_file_path( '/inc/fashe-setup.php' );
+
+?>

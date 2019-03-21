@@ -1,4 +1,5 @@
 <?php get_header(); ?>
+
     <section class="bgwhite p-t-60">
         <div class="container">
             <div class="row">
@@ -10,4 +11,5 @@
             </div>
         </div>
     </section>
+
 <?php get_footer(); ?>

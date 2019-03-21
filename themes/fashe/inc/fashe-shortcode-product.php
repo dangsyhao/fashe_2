@@ -21,7 +21,7 @@ function fashe_featured_products_right_bar( $atts )
     $shortcode = new fashe_product_shortcode_class($atts, 'featured_products');
     $products = $shortcode->fashe_get_query_results();
 
-    //ob_start();
+    ob_start();
 
         foreach ($products->ids as $product_id) {
 
@@ -34,7 +34,7 @@ function fashe_featured_products_right_bar( $atts )
 
     wp_reset_postdata();
 
-   // return ob_get_clean();
+   return ob_get_clean();
 }
 
 add_action('fashe_featured_products_right_bar','fashe_featured_products_right_bar');

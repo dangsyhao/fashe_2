@@ -39,12 +39,25 @@ get_header();
             </div>
         </section>
     <?php else: ?>
-        <?php
-            while (have_posts()) {
-                the_post();
-               the_content();
-            }
-        ?>
+
+    <section class="bgwhite p-t-60">
+        <div class="container">
+            <div class="row">
+                <div id="result_ajaxp" class="col-md-8 col-lg-9 p-b-75">
+
+                <?php
+                    while (have_posts()) {
+                        the_post();
+                        echo '<div>'.the_title().'</div>';
+                        echo '<div>'.the_content().'</div>';
+                    }
+                ?>
+                </div>
+                <!-- Load right-bar-->
+                <?php get_template_part('template-parts/blocs/right-bar/right-bar') ;?>
+            </div>
+        </div>
+    </section>
     <?php endif;?>
 
 <?php get_footer();?>

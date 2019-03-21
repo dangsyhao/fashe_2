@@ -3,7 +3,7 @@
         Newsletter
     </h4>
 
-    <?php $data_newletter_submit = isset($_GET['mailpoet_success']) ? 'mailpoet_success' : 'mailpoet_error';?>
+    <?php $data_newletter_submit = isset($_GET['mailpoet_success']) ? 'mailpoet_success': 'mailpoet_error';?>
 
     <form target="_self" method="post" action="http://fashe.me/wp-admin/admin-post.php?action=mailpoet_subscription_form"  novalidate="" id="newsletter" data-newletter-submit="<?php echo $data_newletter_submit ;?>">
         <input type="hidden" name="data[form_id]" value="2">
@@ -40,8 +40,13 @@
         $(document).ready(function () {
             var new_letter_submit = $('#newsletter').attr('data-newletter-submit');
             if(typeof new_letter_submit !=='undefined' && new_letter_submit === 'mailpoet_success'){
-                $('.mailpoet_message').html('<p style="color: darkblue">We are considering your offer!</p>')
+                $('.mailpoet_message').html('<p style="color: darkblue ; margin-top: 3px">We are considering your offer!</p>')
             }
+
+            if(typeof new_letter_submit !=='undefined' && new_letter_submit === 'mailpoet_error'){
+                $('.mailpoet_message').html('<p style="color: red ; margin-top: 3px">Email format is wrong or the input field is empty !</p>')
+            }
+
         })
     </script>
 

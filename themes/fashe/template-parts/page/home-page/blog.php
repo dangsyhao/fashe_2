@@ -8,7 +8,7 @@
         </div>
 
         <div class="row">
-            <?php $posts = apply_filters('fashe_news_posts','fashe_news_posts');?>
+            <?php $posts = fashe_news_posts();?>
             <?php foreach ($posts as $post):?>
             <?php setup_postdata($post);?>
             <div class="col-sm-10 col-md-4 p-b-30 m-l-r-auto">
